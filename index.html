@@ -837,9 +837,8 @@ const WORKER_DEV_URL = 'https://worker-registro-prod.ce-australis.workers.dev';
     var btn = document.getElementById('btn-enviar');
     btn.disabled = true;
     btn.textContent = currentLang === 'es' ? 'Enviando…' : 'Sending…';
-    document.getElementById('error-envio').style.display  = 'none';
-    document.getElementById('debug-panel').classList.remove('visible');
-
+var err = document.getElementById('error-envio');
+if (err) err.style.display = 'none';document.getElementById('debug-panel')?.classList.remove('visible');
     var progreso = iniciarProgreso();
 
     // Leer fotos de todos los huéspedes
