@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Bienvenida ES · Ático Marbella Centro</title>
+</head>
+<body style="margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; background:#e0e0e0;">
+
+  <div style="background-color:#f2f2f2; padding:30px 16px; font-family:Arial, Helvetica, sans-serif;">
+
+    <!-- CARD PRINCIPAL -->
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+           style="max-width:600px; margin:0 auto; background:#ffffff;
+                  border-radius:10px; overflow:hidden;
+                  box-shadow:0 2px 12px rgba(0,0,0,0.10);">
+
+      <!-- ── HEADER ─────────────────────────────── -->
+      <tr>
+        <td style="background-color:#012030; padding:36px 32px 30px; text-align:center;">
+          <!-- Icono/decorativo -->
+          <div style="font-size:28px; margin-bottom:10px; letter-spacing:2px;"></div>
+          <h1 style="margin:0; color:#ffffff; font-family:Georgia, 'Times New Roman', serif;
+                     font-size:24px; font-weight:normal; letter-spacing:0.04em; line-height:1.3;">
+            Ático Marbella Centro
+          </h1>
+          <p style="margin:8px 0 0; color:rgba(255,255,255,0.60);
+                    font-size:11px; letter-spacing:0.14em; text-transform:uppercase;">
+            Instrucciones de llegada
+          </p>
+        </td>
+      </tr>
+
+      <!-- ── WELCOME ─────────────────────────────── -->
+      <tr>
+        <td style="padding:32px 32px 0;">
+          <p style="margin:0; font-size:17px; color:#012030; font-weight:bold; line-height:1.4;">
+            Hola, <span style="color:#C4724A;">${nombre}</span> 👋🏻
+            </p>
+          <p style="margin:12px 0 0; font-size:15px; color:#444444; line-height:1.7;">
+Gracias por rellenar el formulario de registro.<br>
+A continuación toda la información para el acceso al apartamento.
+</p>
+        </td>
+      </tr>
+
+      <!-- ── SEPARADOR ──────────────────────────── -->
+      <tr>
+        <td style="padding:24px 32px 0;">
+          <hr style="border:none; border-top:1px solid #e8e8e8; margin:0;">
+        </td>
+      </tr>
+
+      <!-- ── RESUMEN DE ESTANCIA ─────────────────── -->
+      <tr>
+        <td style="padding:24px 32px 0;">
+          <!-- Etiqueta de sección -->
+          <p style="margin:0 0 14px; font-size:11px; font-weight:bold; letter-spacing:0.12em;
+                    text-transform:uppercase; color:#012030;">
+            📋 &nbsp;Tu reserva
+          </p>
+
+          <!-- Tabla de datos -->
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+                 style="background:#f7f9fb; border-radius:8px; border:1px solid #e2e8ed;
+                        overflow:hidden; font-size:14px;">
+            <tr>
+              <td style="padding:12px 16px; color:#777777; width:40%; border-bottom:1px solid #e2e8ed;">
+                Nombre
+              </td>
+              <td style="padding:12px 16px; color:#012030; font-weight:bold; border-bottom:1px solid #e2e8ed;">
+                ${nombre} ${apellido1}
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:12px 16px; color:#777777; border-bottom:1px solid #e2e8ed;">
+                Check-in
+              </td>
+              <td style="padding:12px 16px; color:#012030; font-weight:bold; border-bottom:1px solid #e2e8ed;">
+                ${fechaEntrada}
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:12px 16px; color:#777777;">
+                Check-out
+              </td>
+              <td style="padding:12px 16px; color:#012030; font-weight:bold;">
+                ${fechaSalida}<br>Check-out antes de las 11:00
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <!-- ── SEPARADOR ──────────────────────────── -->
+      <tr>
+        <td style="padding:24px 32px 0;">
+          <hr style="border:none; border-top:1px solid #e8e8e8; margin:0;">
+        </td>
+      </tr>
+
+      <!-- ── DIRECCIÓN ───────────────────────────── -->
+      <tr>
+        <td style="padding:24px 32px 0;">
+          <p style="margin:0 0 14px; font-size:11px; font-weight:bold; letter-spacing:0.12em;
+                    text-transform:uppercase; color:#012030;">
+            📍 &nbsp;Dirección
+          </p>
+          <p style="margin:0 0 4px; font-size:16px; color:#1a1a1a; font-weight:bold; line-height:1.4;">
+            Calle Jacinto Benavente, 8
+          </p>
+          <p style="margin:0 0 18px; font-size:14px; color:#555555; line-height:1.5;">
+            Edificio Marbelsun III<br>
+            8º planta · puerta&nbsp;3
+          </p>
+          <!-- Botón mapa -->
+          <a href="https://maps.app.goo.gl/pRVaVEH8yxymNwq99"
+   style="display:inline-flex; align-items:center; justify-content:center; gap:8px;
+          background-color:#012030; color:#ffffff;
+          font-size:14px; font-weight:bold; text-decoration:none;
+          padding:12px 24px; border-radius:6px; letter-spacing:0.03em;">
+  ↗️
+  Abrir en Google Maps
+</a>
+        </td>
+      </tr>
+
+      <!-- ── SEPARADOR ──────────────────────────── -->
+      <tr>
+        <td style="padding:24px 32px 0;">
+          <hr style="border:none; border-top:1px solid #e8e8e8; margin:0;">
+        </td>
+      </tr>
+
+     <!-- ── CAJA DE LLAVES ──────────────────────── -->
+<tr>
+  <td style="padding:24px 32px 0;">
+    <p style="margin:0 0 14px; font-size:11px; font-weight:bold; letter-spacing:0.12em;
+              text-transform:uppercase; color:#012030;">
+      🔑 &nbsp;Acceso · Caja de llaves
+    </p>
+
+    <p style="margin:0 0 14px; font-size:14px; color:#444444; line-height:1.7;">
+      El acceso al apartamento se realiza de forma autónoma mediante una caja de seguridad con código.<br>
+      Sigue estos pasos:
+    </p>
+
+    <!-- Paso 1 -->
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+           style="margin-bottom:10px;">
+      <tr>
+        <td style="vertical-align:top; width:32px;">
+          <div style="background:#012030; color:#ffffff; width:24px; height:24px;
+                      border-radius:50%; text-align:center; line-height:24px;
+                      font-size:12px; font-weight:bold;">1</div>
+        </td>
+
+        <td style="padding-left:10px; font-size:14px; color:#444444; line-height:1.6;">
+          Al llegar al portal del edificio, justo enfrente verás una <strong>escalera con barandilla metálica</strong>.<br>
+          La <strong>caja de llaves</strong> está colgada en la barandilla, en el <strong>lado derecho de la escalera</strong>
+          (mirando desde el portal).<br>
+
+          <a href="https://photos.app.goo.gl/dW7efj3aK2EZeHm1A">
+          📷 Ver foto de la ubicación
+          </a>
+        </td>
+      </tr>
+    </table>
+
+    <!-- Paso 2 -->
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+           style="margin-bottom:10px;">
+      <tr>
+        <td style="vertical-align:top; width:32px;">
+          <div style="background:#012030; color:#ffffff; width:24px; height:24px;
+                      border-radius:50%; text-align:center; line-height:24px;
+                      font-size:12px; font-weight:bold;">2</div>
+        </td>
+
+        <td style="padding-left:10px; font-size:14px; color:#444444; line-height:1.6;">
+          Introduce el <strong>código de acceso</strong> en la caja:
+
+          <div style="margin-top:6px;">
+            <span style="background:#f0f0f0;
+            padding:4px 10px; border-radius:4px; font-family:monospace; font-size:15px;
+            color:#012030; font-weight:bold; letter-spacing:1px;">
+            ${codigoCaja}
+            </span>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <!-- Paso 3 -->
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+           style="margin-bottom:10px;">
+      <tr>
+        <td style="vertical-align:top; width:32px;">
+          <div style="background:#012030; color:#ffffff; width:24px; height:24px;
+                      border-radius:50%; text-align:center; line-height:24px;
+                      font-size:12px; font-weight:bold;">3</div>
+        </td>
+
+        <td style="padding-left:10px; font-size:14px; color:#444444; line-height:1.6;">
+          Dentro encontrarás un llavero con:
+
+          <div style="margin-top:6px;">
+          🔵 <strong>Chip azul</strong> → abre el <strong>portal del edificio</strong><br>
+          🔑 <strong>Llave grande</strong> → abre la <strong>puerta del apartamento</strong>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+  </td>
+</tr>
+      <!-- ── SEPARADOR ──────────────────────────── -->
+      <tr>
+        <td style="padding:24px 32px 0;">
+          <hr style="border:none; border-top:1px solid #e8e8e8; margin:0;">
+        </td>
+      </tr>
+
+
+
+      <!-- ── ASCENSOR ────────────────────────────── -->
+      <tr>
+        <td style="padding:24px 32px 0;">
+          <p style="margin:0 0 14px; font-size:11px; font-weight:bold; letter-spacing:0.12em;
+                    text-transform:uppercase; color:#012030;">
+            🛗 &nbsp;Ascensor
+          </p>
+          <p style="margin:0 0 10px; font-size:14px; color:#444444; line-height:1.7;">
+            Al entrar al portal, los ascensores para subir al apartamento se encuentran inmediatamente a mano izquierda.<br>
+            Ten en cuenta que en el edificio hay otros ascensores/montacargas; utiliza únicamente estos para acceder a la vivienda.
+          </p>
+          <p style="margin:0; font-size:14px; color:#444444; line-height:1.7;">
+            Una vez en el ascensor, sube hasta la <strong>planta 8</strong>. El apartamento es la <strong>puerta nº 3</strong>.
+          </p>
+        </td>
+      </tr>
+
+      <!-- ── SEPARADOR ──────────────────────────── -->
+      <tr>
+        <td style="padding:24px 32px 0;">
+          <hr style="border:none; border-top:1px solid #e8e8e8; margin:0;">
+        </td>
+      </tr>
+  <!-- ── WIFI ────────────────────────────────── -->
+      <tr>
+        <td style="padding:24px 32px 0;">
+          <p style="margin:0 0 14px; font-size:11px; font-weight:bold; letter-spacing:0.12em;
+                    text-transform:uppercase; color:#012030;">
+            📶 &nbsp;WiFi
+          </p>
+
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+                 style="background:#f7f9fb; border-radius:8px; border:1px solid #e2e8ed;
+                        overflow:hidden; font-size:14px;">
+            <tr>
+              <td style="padding:12px 16px; color:#777777; width:40%; border-bottom:1px solid #e2e8ed;">
+                Red
+              </td>
+              <td style="padding:12px 16px; font-family:monospace; color:#012030;
+                         font-weight:bold; font-size:15px; border-bottom:1px solid #e2e8ed;">
+                MarbelsunWifi
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:12px 16px; color:#777777;">
+                Contraseña
+              </td>
+              <td style="padding:12px 16px; font-family:monospace; color:#012030;
+                         font-weight:bold; font-size:15px;">
+                marbella2026
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <!-- ── CONTACTO ────────────────────────────── -->
+      <tr>
+        <td style="padding:24px 32px 0;">
+          <p style="margin:0 0 14px; font-size:11px; font-weight:bold; letter-spacing:0.12em;
+                    text-transform:uppercase; color:#012030;">
+            💬 &nbsp;¿Necesitas ayuda?
+          </p>
+          <p style="margin:0 0 10px; font-size:14px; color:#444444; line-height:1.7;">
+            Si tienes cualquier duda o surge algún problema durante la llegada, no dudes en llamarnos.
+          </p>
+          <p style="margin:0; font-size:14px; color:#444444; line-height:1.7;">
+            +34 611 164 242
+          </p>
+        </td>
+      </tr>
+
+      <!-- ── FIRMA ───────────────────────────────── -->
+      <tr>
+        <td style="padding:28px 32px 32px;">
+          <p style="margin:0; font-size:15px; color:#444444; line-height:1.7;">
+            ¡Os deseamos una feliz estancia!
+          </p>
+          <p style="margin:8px 0 0; font-size:16px; color:#012030; font-weight:bold;">
+            Andrés
+          </p>
+          <p style="margin:4px 0 0; font-size:13px; color:#888888;">
+            Ático Marbella Centro
+          </p>
+        </td>
+      </tr>
+
+      <!-- ── FOOTER ──────────────────────────────── -->
+      <tr>
+        <td style="background-color:#f7f9fb; border-top:1px solid #e8e8e8;
+                   padding:18px 32px; text-align:center;">
+          <p style="margin:0; font-size:11px; color:#aaaaaa; line-height:1.6;">
+            Ático Marbella Centro · Calle Jacinto Benavente, 8 · Marbella, Málaga<br>
+            Este correo ha sido enviado automáticamente. Por favor, no respondas directamente a este mensaje.
+          </p>
+        </td>
+      </tr>
+
+    </table>
+    <!-- FIN CARD -->
+
+  </div>
+  <!-- FIN EMAIL CONTAINER -->
+
+</body>
+</html>

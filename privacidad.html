@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Política de Privacidad · Ático Marbella Centro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Questrial&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --sand: #f2f2f2;
+  --terracota: #C4724A;
+  --azul: #012030;
+  --azul-light: #EEF2F7;
+  --texto: #444444;
+  --gris: #6B6B6B;
+  --borde: #e8e8e8;
+  --blanco: #ffffff;
+}
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Questrial', sans-serif;
+      background: var(--sand);
+      color: var(--texto);
+      min-height: 100vh;
+      font-weight: 300;
+    }
+
+    /* ── BARRA DE IDIOMA ── */
+    .lang-bar {
+      background: var(--azul);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: .5rem;
+      padding: .5rem 1.5rem;
+    }
+    .lang-btn {
+      background: none;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      padding: .15rem .4rem;
+      line-height: 1;
+      opacity: .45;
+      transition: opacity .2s, border-color .2s, transform .15s;
+    }
+    .lang-btn:hover { opacity: .85; transform: scale(1.1); }
+    .lang-btn.activo { border-color: rgba(255,255,255,.55); opacity: 1; }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--azul);
+      color: white;
+      padding: 2.5rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .header-icon { font-size: 2.5rem; margin-bottom: .8rem; display: block; position: relative; z-index: 1; }
+    header h1 {
+      font-family: 'Rozha One', serif;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 300;
+      letter-spacing: .03em;
+      margin-bottom: .5rem;
+      position: relative; z-index: 1;
+    }
+    header p {
+      font-size: .82rem;
+      opacity: .65;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      position: relative; z-index: 1;
+    }
+
+    /* ── MAIN ── */
+    main { max-width: 740px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+
+    .btn-volver {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      color: var(--azul);
+      font-size: .85rem;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: .04em;
+      padding: .5rem .9rem;
+      border: 1.5px solid var(--azul);
+      border-radius: 7px;
+      transition: background .2s, color .2s;
+      margin-bottom: 2rem;
+    }
+    .btn-volver:hover { background: var(--azul); color: white; }
+
+    /* ── SECCIONES ── */
+    .seccion {
+      background: var(--blanco);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--borde);
+      box-shadow: 0 2px 14px rgba(0,0,0,.04);
+    }
+    .seccion h2 {
+      font-family: 'Questrial', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--azul);
+      margin-bottom: 1.1rem;
+      padding-bottom: .65rem;
+      border-bottom: 1px solid var(--borde);
+    }
+    .seccion p {
+      font-size: .93rem;
+      line-height: 1.8;
+      color: var(--texto);
+      margin-bottom: .85rem;
+    }
+    .seccion p:last-child { margin-bottom: 0; }
+    .seccion ul {
+      margin: .5rem 0 .85rem 1.2rem;
+      font-size: .93rem;
+      line-height: 1.75;
+      color: var(--texto);
+    }
+    .seccion ul li { margin-bottom: .3rem; }
+    .seccion strong { font-weight: 500; }
+    .seccion a { color: var(--azul); text-decoration: underline; text-underline-offset: 2px; }
+
+    /* ── TABLA ── */
+    .tabla-responsable {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+      margin-top: .75rem;
+    }
+    .tabla-responsable td {
+      padding: .6rem .75rem;
+      vertical-align: top;
+      border-bottom: 1px solid var(--borde);
+      line-height: 1.6;
+    }
+    .tabla-responsable tr:last-child td { border-bottom: none; }
+    .tabla-responsable td:first-child {
+      font-weight: 500;
+      color: var(--gris);
+      font-size: .82rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      width: 35%;
+      white-space: nowrap;
+    }
+    @media (max-width: 480px) {
+      .tabla-responsable td:first-child { white-space: normal; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: .78rem;
+      color: var(--gris);
+      border-top: 1px solid var(--borde);
+      margin-top: 1rem;
+    }
+    footer a { color: var(--azul); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── BADGE VERSIÓN ── */
+    .version-badge {
+      display: inline-block;
+      background: var(--azul-light);
+      color: var(--azul);
+      font-size: .75rem;
+      font-weight: 500;
+      padding: .25rem .7rem;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+      letter-spacing: .04em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA DE IDIOMA -->
+  <div class="lang-bar">
+    <button class="lang-btn activo" id="btn-es" onclick="setLang('es')" title="Español" aria-label="Español">🇪🇸</button>
+    <button class="lang-btn"        id="btn-en" onclick="setLang('en')" title="English" aria-label="English">🇬🇧</button>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <span class="header-icon" aria-hidden="true">🔒</span>
+    <h1 id="hdr-titulo"></h1>
+    <p>Ático Marbella Centro · Calle Jacinto Benavente 8</p>
+  </header>
+
+  <main>
+
+    <a id="btn-volver" href="#" class="btn-volver" aria-label="Volver al formulario">← <span id="txt-volver"></span></a>
+
+    <div class="version-badge" id="version-badge"></div>
+
+    <!-- ── RESPONSABLE ── -->
+    <div class="seccion" id="sec-responsable">
+      <h2 id="sec-responsable-titulo"></h2>
+      <table class="tabla-responsable" id="tabla-responsable"></table>
+    </div>
+
+    <!-- ── DATOS QUE RECOGEMOS ── -->
+    <div class="seccion" id="sec-datos">
+      <h2 id="sec-datos-titulo"></h2>
+      <div id="sec-datos-body"></div>
+    </div>
+
+    <!-- ── FINALIDAD Y BASE LEGAL ── -->
+    <div class="seccion" id="sec-finalidad">
+      <h2 id="sec-finalidad-titulo"></h2>
+      <div id="sec-finalidad-body"></div>
+    </div>
+
+    <!-- ── COMUNICACIÓN A AUTORIDADES ── -->
+    <div class="seccion" id="sec-autoridades">
+      <h2 id="sec-autoridades-titulo"></h2>
+      <div id="sec-autoridades-body"></div>
+    </div>
+
+    <!-- ── DESTINATARIOS ── -->
+    <div class="seccion" id="sec-destinatarios">
+      <h2 id="sec-destinatarios-titulo"></h2>
+      <div id="sec-destinatarios-body"></div>
+    </div>
+
+    <!-- ── TRANSFERENCIAS INTERNACIONALES ── -->
+    <div class="seccion" id="sec-transferencias">
+      <h2 id="sec-transferencias-titulo"></h2>
+      <div id="sec-transferencias-body"></div>
+    </div>
+
+    <!-- ── CONSERVACIÓN ── -->
+    <div class="seccion" id="sec-conservacion">
+      <h2 id="sec-conservacion-titulo"></h2>
+      <div id="sec-conservacion-body"></div>
+    </div>
+
+    <!-- ── SEGURIDAD ── -->
+    <div class="seccion" id="sec-seguridad">
+      <h2 id="sec-seguridad-titulo"></h2>
+      <div id="sec-seguridad-body"></div>
+    </div>
+
+    <!-- ── DERECHOS ── -->
+    <div class="seccion" id="sec-derechos">
+      <h2 id="sec-derechos-titulo"></h2>
+      <div id="sec-derechos-body"></div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p id="footer-txt"></p>
+    <p style="margin-top:.4rem;">
+      <a href="mailto:aticomarbellacentro@gmail.com">aticomarbellacentro@gmail.com</a>
+      &nbsp;·&nbsp;
+      <a href="tel:+34611164242">+34 611 164 242</a>
+    </p>
+  </footer>
+
+  <script>
+    /* ── CONTENIDO BILINGÜE ── */
+    const T = {
+      es: {
+        hdrTitulo: 'Política de Privacidad',
+        volver: 'Volver al formulario',
+        versionBadge: 'Versión vigente: junio 2025',
+        footerTxt: '© Ático Marbella Centro · Calle Jacinto Benavente 8, Edificio Marbelsun III, Marbella',
+
+        secResponsableTitulo: '1. Responsable del tratamiento',
+        tablaResponsable: [
+          ['Responsable', 'Titular del Apartamento Turístico Ático Marbella Centro'],
+          ['Domicilio', 'Calle Jacinto Benavente 8, Edificio Marbelsun III, Marbella (Málaga)'],
+          ['Correo electrónico', '<a href="mailto:aticomarbellacentro@gmail.com">aticomarbellacentro@gmail.com</a>'],
+          ['Teléfono', '<a href="tel:+34611164242">+34 611 164 242</a>'],
+        ],
+
+        secDatosTitulo: '2. Datos personales que se recogen',
+        secDatosBody: `
+          <p>Con motivo del registro obligatorio de viajeros, recogemos los siguientes datos personales de cada huésped mayor de edad:</p>
+          <ul>
+            <li>Nombre y apellidos</li>
+            <li>Fecha de nacimiento</li>
+            <li>Sexo</li>
+            <li>Nacionalidad</li>
+            <li>Tipo de documento de identidad, número y fecha de expedición</li>
+            <li>Número de soporte del documento (cuando proceda)</li>
+            <li>Fechas de entrada y salida</li>
+            <li>Teléfono de contacto</li>
+            <li>Dirección postal (en su caso)</li>
+            <li>Correo electrónico (de forma voluntaria)</li>
+          </ul>
+          <p>No recogemos imágenes ni fotografías de documentos de identidad.</p>
+        `,
+
+        secFinalidadTitulo: '3. Finalidad del tratamiento y base legal',
+        secFinalidadBody: `
+          <p><strong>a) Cumplimiento de obligación legal</strong> (art. 6.1.c RGPD): El Real Decreto 933/2021, de 26 de octubre, impone la obligación de registrar los datos de los viajeros que se alojen en establecimientos turísticos y comunicarlos a las Fuerzas y Cuerpos de Seguridad del Estado en el plazo de 24 horas. El tratamiento de estos datos es, por tanto, obligatorio y no requiere el consentimiento del interesado como base legal.</p>
+          <p><strong>b) Ejecución de un contrato</strong> (art. 6.1.b RGPD): Algunos datos (teléfono, correo electrónico) se utilizan también para gestionar la relación contractual de hospedaje y comunicarnos con el huésped en relación con su estancia.</p>
+          <p><strong>c) Interés legítimo</strong> (art. 6.1.f RGPD): En su caso, para la gestión administrativa interna del alojamiento.</p>
+        `,
+
+        secAutoridadesTitulo: '4. Comunicación a autoridades',
+        secAutoridadesBody: `
+          <p>En virtud del Real Decreto 933/2021 y de la normativa de seguridad ciudadana aplicable, los datos registrados serán comunicados a las Fuerzas y Cuerpos de Seguridad del Estado (Policía Nacional, Guardia Civil o Policía Local competente) en el plazo máximo de 24 horas desde la llegada del viajero.</p>
+          <p>Esta comunicación es una obligación legal del titular del alojamiento y no requiere autorización por parte del huésped.</p>
+        `,
+
+        secDestinatariosTitulo: '5. Destinatarios de los datos',
+        secDestinatariosBody: `
+          <p>Los datos podrán ser comunicados a los siguientes destinatarios:</p>
+          <ul>
+            <li><strong>Fuerzas y Cuerpos de Seguridad del Estado</strong>, conforme a la obligación establecida en el RD 933/2021.</li>
+            <li><strong>Proveedores tecnológicos</strong> que actúen como encargados del tratamiento, exclusivamente para el almacenamiento y gestión técnica del formulario y de los registros (p. ej., servicios de almacenamiento en la nube y hoja de cálculo). Dichos proveedores actúan bajo contrato o condiciones de servicio que garantizan el cumplimiento del RGPD y no tratan los datos para fines propios.</li>
+          </ul>
+          <p>No se cederán los datos a terceros salvo obligación legal.</p>
+        `,
+
+        secTransferenciasTitulo: '6. Transferencias internacionales',
+        secTransferenciasBody: `
+          <p>Algunos de los proveedores tecnológicos utilizados para la gestión del formulario pueden estar establecidos o almacenar datos fuera del Espacio Económico Europeo (EEE). En tales casos, el responsable se asegura de que dichas transferencias internacionales cuenten con las garantías adecuadas previstas en el RGPD (p. ej., cláusulas contractuales tipo aprobadas por la Comisión Europea, o que el país de destino haya sido reconocido como de nivel adecuado de protección).</p>
+        `,
+
+        secConservacionTitulo: '7. Plazo de conservación',
+        secConservacionBody: `
+          <p>Los datos de registro de viajeros se conservarán durante <strong>3 años</strong> desde la fecha del último registro, de acuerdo con el plazo establecido en el Real Decreto 933/2021.</p>
+          <p>Los datos adicionales recogidos para la gestión de la estancia (correo electrónico, teléfono) se conservarán durante el tiempo necesario para la ejecución del contrato y el cumplimiento de posibles reclamaciones, y en cualquier caso no más de <strong>5 años</strong>.</p>
+          <p>Transcurridos dichos plazos, los datos serán eliminados o anonimizados de forma segura.</p>
+        `,
+
+        secSeguridadTitulo: '8. Medidas de seguridad',
+        secSeguridadBody: `
+          <p>El responsable ha adoptado medidas técnicas y organizativas adecuadas para garantizar la seguridad de los datos personales, evitar su alteración, pérdida, tratamiento o acceso no autorizado, teniendo en cuenta el estado de la tecnología, la naturaleza de los datos y los riesgos a que están expuestos.</p>
+          <p>El formulario de recogida de datos opera bajo protocolo HTTPS. El acceso a los registros almacenados está restringido mediante controles de autenticación.</p>
+        `,
+
+        secDerechosTitulo: '9. Derechos de los interesados',
+        secDerechosBody: `
+          <p>El interesado puede ejercer, en cualquier momento, los siguientes derechos reconocidos por el RGPD:</p>
+          <ul>
+            <li><strong>Acceso:</strong> conocer qué datos suyos tratamos.</li>
+            <li><strong>Rectificación:</strong> corregir datos inexactos o incompletos.</li>
+            <li><strong>Supresión:</strong> solicitar la eliminación de sus datos cuando, entre otros casos, ya no sean necesarios para los fines para los que fueron recogidos (siempre que no exista obligación legal de conservarlos).</li>
+            <li><strong>Oposición:</strong> oponerse a determinados tratamientos basados en interés legítimo.</li>
+            <li><strong>Limitación del tratamiento:</strong> solicitar la suspensión del tratamiento en determinadas circunstancias.</li>
+            <li><strong>Portabilidad:</strong> recibir sus datos en formato estructurado y legible por máquina.</li>
+          </ul>
+          <p>Para ejercer cualquiera de estos derechos, puede dirigirse al responsable en la dirección postal o correo electrónico indicados en el apartado 1, adjuntando copia de su documento de identidad.</p>
+          <p>Tiene derecho a presentar una reclamación ante la <strong>Agencia Española de Protección de Datos (AEPD)</strong>: <a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>.</p>
+          <p>Le informamos de que, en relación con los datos tratados en virtud del RD 933/2021 (obligación legal), los derechos de supresión, oposición y limitación pueden verse restringidos durante el plazo legalmente establecido de conservación.</p>
+        `,
+      },
+      en: {
+        hdrTitulo: 'Privacy Policy',
+        volver: 'Back to registration',
+        versionBadge: 'Current version: June 2025',
+        footerTxt: '© Ático Marbella Centro · Calle Jacinto Benavente 8, Edificio Marbelsun III, Marbella',
+
+        secResponsableTitulo: '1. Data Controller',
+        tablaResponsable: [
+          ['Controller', 'Owner of Ático Marbella Centro Tourist Apartment'],
+          ['Address', 'Calle Jacinto Benavente 8, Edificio Marbelsun III, Marbella (Málaga), Spain'],
+          ['Email', '<a href="mailto:aticomarbellacentro@gmail.com">aticomarbellacentro@gmail.com</a>'],
+          ['Phone', '<a href="tel:+34611164242">+34 611 164 242</a>'],
+        ],
+
+        secDatosTitulo: '2. Personal data collected',
+        secDatosBody: `
+          <p>For the mandatory traveller registration process, we collect the following personal data for each adult guest:</p>
+          <ul>
+            <li>Full name</li>
+            <li>Date of birth</li>
+            <li>Sex</li>
+            <li>Nationality</li>
+            <li>Identity document type, number and issue date</li>
+            <li>Document support number (where applicable)</li>
+            <li>Check-in and check-out dates</li>
+            <li>Contact phone number</li>
+            <li>Postal address (where provided)</li>
+            <li>Email address (voluntarily provided)</li>
+          </ul>
+          <p>We do not collect images or photographs of identity documents.</p>
+        `,
+
+        secFinalidadTitulo: '3. Purposes of processing and legal basis',
+        secFinalidadBody: `
+          <p><strong>a) Compliance with a legal obligation</strong> (Art. 6(1)(c) GDPR): Royal Decree 933/2021 of 26 October requires accommodation establishments to register travellers' details and report them to the Security Forces within 24 hours. This processing is therefore mandatory and does not require the data subject's consent as a legal basis.</p>
+          <p><strong>b) Performance of a contract</strong> (Art. 6(1)(b) GDPR): Certain data (phone number, email address) are also used to manage the accommodation relationship and communicate with the guest regarding their stay.</p>
+          <p><strong>c) Legitimate interest</strong> (Art. 6(1)(f) GDPR): Where applicable, for the internal administrative management of the accommodation.</p>
+        `,
+
+        secAutoridadesTitulo: '4. Reporting to authorities',
+        secAutoridadesBody: `
+          <p>Pursuant to Royal Decree 933/2021 and applicable public security regulations, the registered data will be reported to the Spanish Security Forces (Policía Nacional, Guardia Civil or the competent local police) within a maximum of 24 hours of the guest's arrival.</p>
+          <p>This reporting is a legal obligation of the accommodation owner and does not require the guest's authorisation.</p>
+        `,
+
+        secDestinatariosTitulo: '5. Recipients of the data',
+        secDestinatariosBody: `
+          <p>Data may be disclosed to the following recipients:</p>
+          <ul>
+            <li><strong>Spanish Security Forces</strong>, in compliance with the obligation established by RD 933/2021.</li>
+            <li><strong>Technology providers</strong> acting as data processors, solely for the storage and technical management of the form and records (e.g. cloud storage and spreadsheet services). These providers act under contract or service terms ensuring GDPR compliance and do not process the data for their own purposes.</li>
+          </ul>
+          <p>Data will not be disclosed to third parties except where required by law.</p>
+        `,
+
+        secTransferenciasTitulo: '6. International transfers',
+        secTransferenciasBody: `
+          <p>Some of the technology providers used to manage the registration form may be established or store data outside the European Economic Area (EEA). In such cases, the controller ensures that these international transfers are subject to appropriate safeguards under the GDPR (e.g., standard contractual clauses approved by the European Commission, or transfers to countries recognised as providing an adequate level of protection).</p>
+        `,
+
+        secConservacionTitulo: '7. Retention period',
+        secConservacionBody: `
+          <p>Traveller registration data will be retained for <strong>3 years</strong> from the date of the last registration, in accordance with the retention period established by Royal Decree 933/2021.</p>
+          <p>Additional data collected for stay management purposes (email address, phone number) will be retained for as long as necessary for the performance of the contract and the management of any potential claims, and in any case for no more than <strong>5 years</strong>.</p>
+          <p>After these periods, data will be securely deleted or anonymised.</p>
+        `,
+
+        secSeguridadTitulo: '8. Security measures',
+        secSeguridadBody: `
+          <p>The controller has implemented appropriate technical and organisational measures to ensure the security of personal data and prevent its alteration, loss, processing or unauthorised access, taking into account the state of the art, the nature of the data and the risks to which it is exposed.</p>
+          <p>The data collection form operates under the HTTPS protocol. Access to stored records is restricted through authentication controls.</p>
+        `,
+
+        secDerechosTitulo: '9. Data subject rights',
+        secDerechosBody: `
+          <p>Data subjects may exercise the following rights recognised under the GDPR at any time:</p>
+          <ul>
+            <li><strong>Access:</strong> to know what personal data we process about you.</li>
+            <li><strong>Rectification:</strong> to correct inaccurate or incomplete data.</li>
+            <li><strong>Erasure:</strong> to request the deletion of your data when, among other cases, it is no longer necessary for the purposes for which it was collected (provided there is no legal obligation to retain it).</li>
+            <li><strong>Objection:</strong> to object to certain processing based on legitimate interest.</li>
+            <li><strong>Restriction of processing:</strong> to request the suspension of processing in certain circumstances.</li>
+            <li><strong>Data portability:</strong> to receive your data in a structured, machine-readable format.</li>
+          </ul>
+          <p>To exercise any of these rights, please contact the controller at the postal address or email provided in section 1, enclosing a copy of your identity document.</p>
+          <p>You have the right to lodge a complaint with the <strong>Spanish Data Protection Agency (AEPD)</strong>: <a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>.</p>
+          <p>Please note that, in relation to data processed pursuant to RD 933/2021 (legal obligation), the rights to erasure, objection and restriction may be limited during the legally established retention period.</p>
+        `,
+      }
+    };
+
+    /* ── GESTIÓN DE IDIOMA ── */
+    let currentLang = 'es';
+
+    function getLang() {
+      const param = new URLSearchParams(window.location.search).get('lang');
+      if (param === 'es' || param === 'en') return param;
+      const stored = localStorage.getItem('lang');
+      if (stored === 'es' || stored === 'en') return stored;
+      return 'es';
+    }
+
+    function setLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', lang);
+      window.history.replaceState({}, '', url);
+      applyLang();
+    }
+
+    function applyLang() {
+      const t = T[currentLang];
+      document.documentElement.lang = currentLang;
+
+      document.getElementById('btn-es').classList.toggle('activo', currentLang === 'es');
+      document.getElementById('btn-en').classList.toggle('activo', currentLang === 'en');
+
+      document.getElementById('hdr-titulo').textContent    = t.hdrTitulo;
+      document.getElementById('txt-volver').textContent    = t.volver;
+      document.getElementById('version-badge').textContent = t.versionBadge;
+      document.getElementById('footer-txt').textContent    = t.footerTxt;
+
+      // Botón volver
+      document.getElementById('btn-volver').href = `registro.html?lang=${currentLang}`;
+
+      // Responsable
+      document.getElementById('sec-responsable-titulo').textContent = t.secResponsableTitulo;
+      const tabla = document.getElementById('tabla-responsable');
+      tabla.innerHTML = t.tablaResponsable.map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
+
+      // Secciones de contenido
+      const secciones = [
+        ['datos',          'secDatosTitulo',          'secDatosBody'],
+        ['finalidad',      'secFinalidadTitulo',       'secFinalidadBody'],
+        ['autoridades',    'secAutoridadesTitulo',     'secAutoridadesBody'],
+        ['destinatarios',  'secDestinatariosTitulo',   'secDestinatariosBody'],
+        ['transferencias', 'secTransferenciasTitulo',  'secTransferenciasBody'],
+        ['conservacion',   'secConservacionTitulo',    'secConservacionBody'],
+        ['seguridad',      'secSeguridadTitulo',       'secSeguridadBody'],
+        ['derechos',       'secDerechosTitulo',        'secDerechosBody'],
+      ];
+
+      secciones.forEach(([id, tituloKey, bodyKey]) => {
+        document.getElementById(`sec-${id}-titulo`).textContent = t[tituloKey];
+        document.getElementById(`sec-${id}-body`).innerHTML     = t[bodyKey];
+      });
+    }
+
+    /* ── INIT ── */
+    currentLang = getLang();
+    applyLang();
+  </script>
+
+</body>
+</html>
