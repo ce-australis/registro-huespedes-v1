@@ -653,13 +653,13 @@ const WORKER_DEV_URL = 'https://worker-registro-prod.ce-australis.workers.dev';
     setHTML('aviso-legal',            t.avisoLegal);
     setHTML('lbl-check-privacidad',   t.checkPrivacidad);
     setHTML('lbl-check-autoridades',  t.checkAutoridades);
-    setHTML('footer-privacidad-link', '<a href="privacidad.html?lang=' + currentLang + '">' + t.footerPrivacidad + '</a>');
+    setHTML('footer-privacidad-link', '<a href="/privacidad?lang=' + currentLang + '">' + t.footerPrivacidad + '</a>');
     setHTML('err-envio-texto',        t.errEnvioTexto);
 
     // Links de privacidad dinámicos
     ['link-privacidad-es', 'link-privacidad-en'].forEach(function(id) {
       var el = document.getElementById(id);
-      if (el) el.href = 'privacidad.html?lang=' + currentLang;
+      if (el) el.href = '/privacidad?lang=' + currentLang;
     });
 
     // Bloques de huéspedes
