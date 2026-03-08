@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin · Ático Marbella Centro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Questrial&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --azul: #012030;
+  --azul-light: #EEF2F7;
+
+  --terracota: #C4724A;
+  --terracota-dark: #A85A35;
+
+  --sand: #f2f2f2;
+  --blanco: #ffffff;
+
+  --texto: #444444;
+  --gris: #6B6B6B;
+
+  --borde: #e8e8e8;
+
+  --error: #C0392B;
+
+  --verde: #27AE60;
+  --verde-light: #EAFAF1;
+}
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Questrial', sans-serif; background: var(--sand); color: var(--texto); min-height: 100vh; font-weight: 300; }
+
+    /* ── BANNER DEV ── */
+    .dev-banner {
+      background: #E67E00; color: white; text-align: center;
+      padding: .4rem 1rem; font-size: .75rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════
+       LOGIN OVERLAY
+    ══════════════════════════════════ */
+    .login-overlay {
+      position: fixed; inset: 0; z-index: 1000;
+      background: var(--azul);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .login-overlay.oculto { display: none; }
+
+    .login-card {
+      background: var(--blanco); border-radius: 16px;
+      padding: 3rem 2.5rem; width: min(420px, 92vw);
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+      text-align: center;
+    }
+    .login-icon { font-size: 2.8rem; margin-bottom: .8rem; display: block; }
+    .login-card h1 {
+      font-family: 'Rozha One', serif; font-size: 1.8rem; color: var(--azul);
+      margin-bottom: .3rem; font-weight: 400;
+    }
+    .login-card p { font-size: .85rem; color: var(--gris); margin-bottom: 2rem; }
+    .login-card input[type="password"] {
+      width: 100%; padding: .9rem 1rem; border: 1.5px solid var(--borde);
+      border-radius: 8px; font-family: 'Questrial', sans-serif; font-size: 16px;
+      color: var(--texto); background: var(--blanco); margin-bottom: 1rem;
+      transition: border-color .2s;
+    }
+    .login-card input[type="password"]:focus { outline: none; border-color: var(--azul); }
+    .btn-login {
+      width: 100%; padding: .95rem; background: var(--azul); color: white;
+      border: none; border-radius: 8px; font-family: 'Questrial', sans-serif;
+      font-size: 1rem; font-weight: 500; letter-spacing: .06em;
+      text-transform: uppercase; cursor: pointer; transition: background .2s;
+    }
+    .btn-login:hover { background: var(--terracota); }
+    .btn-login:disabled { opacity: .6; cursor: not-allowed; }
+    .login-error {
+      display: none; margin-top: .9rem; padding: .7rem 1rem;
+      background: #FFF0EE; border: 1px solid #F5C6BE; border-radius: 6px;
+      color: var(--error); font-size: .85rem;
+    }
+    .login-error.visible { display: block; }
+
+    /* ══════════════════════════════════
+       TOPBAR
+    ══════════════════════════════════ */
+    .topbar {
+      background: var(--azul); color: white;
+      display: flex; align-items: center; gap: 1rem;
+      padding: .8rem 1.5rem; flex-wrap: wrap;
+    }
+    .topbar-titulo {
+      font-family: 'Rozha One', serif; font-size: 1.2rem; font-weight: 400;
+      flex: 1; min-width: 200px;
+    }
+    .topbar-info {
+      font-size: .8rem; opacity: .7; white-space: nowrap;
+    }
+    .topbar-actions { display: flex; gap: .5rem; }
+    .btn-sm {
+      padding: .45rem .9rem; border-radius: 6px; font-family: 'Questrial', sans-serif;
+      font-size: .8rem; font-weight: 500; letter-spacing: .05em; cursor: pointer;
+      text-transform: uppercase; transition: background .2s, opacity .2s; border: none;
+    }
+    .btn-actualizar { background: rgba(255,255,255,.15); color: white; }
+    .btn-actualizar:hover { background: rgba(255,255,255,.28); }
+    .btn-actualizar:disabled { opacity: .5; cursor: not-allowed; }
+    .btn-logout { background: var(--terracota); color: white; }
+    .btn-logout:hover { background: var(--terracota-dark); }
+
+    /* ══════════════════════════════════
+       CONTENIDO PRINCIPAL
+    ══════════════════════════════════ */
+    .main-content { max-width: 1200px; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
+
+    /* Barra de búsqueda */
+    .search-bar {
+      background: var(--blanco); border: 1px solid var(--borde); border-radius: 10px;
+      padding: 1rem 1.25rem; margin-bottom: 1.25rem;
+      display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+      box-shadow: 0 2px 10px rgba(0,0,0,.04);
+    }
+    .search-bar label { font-size: .78rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--gris); white-space: nowrap; }
+    .search-input {
+      flex: 1; min-width: 200px; padding: .6rem .9rem;
+      border: 1.5px solid var(--borde); border-radius: 7px;
+      font-family: 'Questrial', sans-serif; font-size: .95rem; color: var(--texto);
+    }
+    .search-input:focus { outline: none; border-color: var(--azul); }
+    .search-count { font-size: .82rem; color: var(--gris); white-space: nowrap; }
+
+    /* Tabla */
+    .tabla-wrap {
+      background: var(--blanco); border: 1px solid var(--borde); border-radius: 12px;
+      overflow: hidden; box-shadow: 0 2px 14px rgba(0,0,0,.04);
+    }
+    .tabla-registros { width: 100%; border-collapse: collapse; }
+    .tabla-registros th {
+      background: var(--azul-light); color: var(--azul);
+      font-size: .73rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+      padding: .75rem 1rem; text-align: left; border-bottom: 1px solid var(--borde);
+      white-space: nowrap;
+    }
+    .tabla-registros td {
+      padding: .75rem 1rem; border-bottom: 1px solid var(--borde);
+      font-size: .88rem; color: var(--texto); vertical-align: middle;
+    }
+    .tabla-registros tr:last-child td { border-bottom: none; }
+    .tabla-registros tbody tr { cursor: pointer; transition: background .12s; }
+    .tabla-registros tbody tr:hover { background: var(--azul-light); }
+
+    .badge-fotos {
+      display: inline-flex; gap: .25rem; align-items: center;
+      font-size: .72rem; font-weight: 500; padding: .2rem .55rem;
+      border-radius: 20px; background: var(--verde-light); color: var(--verde);
+    }
+    .badge-no {
+      font-size: .72rem; color: var(--gris);
+    }
+    .td-fecha { white-space: nowrap; }
+    .td-nombre { font-weight: 500; }
+    .td-doc { font-family: 'Courier New', monospace; font-size: .82rem; }
+
+    /* Estado vacío / cargando */
+    .tabla-estado {
+      text-align: center; padding: 3rem 1rem;
+      color: var(--gris); font-size: .9rem;
+    }
+    .tabla-estado .icono { font-size: 2.5rem; margin-bottom: .75rem; display: block; }
+
+    /* Paginación */
+    .paginacion {
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+      padding: 1rem;
+      border-top: 1px solid var(--borde);
+    }
+    .btn-pag {
+      padding: .4rem .75rem; border: 1.5px solid var(--borde); border-radius: 6px;
+      background: var(--blanco); color: var(--azul); font-family: 'Questrial', sans-serif;
+      font-size: .82rem; cursor: pointer; transition: background .15s, border-color .15s;
+    }
+    .btn-pag:hover:not(:disabled) { background: var(--azul-light); border-color: var(--azul); }
+    .btn-pag:disabled { opacity: .4; cursor: not-allowed; }
+    .pag-info { font-size: .82rem; color: var(--gris); padding: 0 .5rem; }
+
+    /* ══════════════════════════════════
+       MODAL DETALLE
+    ══════════════════════════════════ */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(36,62,86,.55); backdrop-filter: blur(3px);
+      display: flex; align-items: flex-start; justify-content: center;
+      padding: 2rem 1rem;
+      opacity: 0; pointer-events: none; transition: opacity .2s;
+      overflow-y: auto;
+    }
+    .modal-overlay.visible { opacity: 1; pointer-events: all; }
+    .modal-panel {
+      background: var(--blanco); border-radius: 14px; width: min(680px, 100%);
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+      transform: translateY(20px); transition: transform .2s;
+    }
+    .modal-overlay.visible .modal-panel { transform: translateY(0); }
+
+    .modal-header {
+      background: var(--azul); color: white; padding: 1.5rem 1.75rem;
+      border-radius: 14px 14px 0 0;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .modal-header h2 { font-family: 'Rozha One', serif; font-size: 1.4rem; font-weight: 400; flex: 1; }
+    .modal-close {
+      background: rgba(255,255,255,.15); border: none; color: white;
+      width: 32px; height: 32px; border-radius: 50%; font-size: 1.1rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background .15s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,.3); }
+
+    .modal-body { padding: 1.75rem; }
+
+    .modal-seccion { margin-bottom: 1.5rem; }
+    .modal-seccion:last-child { margin-bottom: 0; }
+    .modal-seccion-titulo {
+      font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--azul); margin-bottom: .85rem; padding-bottom: .5rem;
+      border-bottom: 1px solid var(--borde); display: flex; align-items: center; gap: .4rem;
+    }
+    .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem 1.25rem; }
+    @media (max-width: 480px) { .modal-grid { grid-template-columns: 1fr; } }
+    .modal-campo { }
+    .modal-campo .mc-label {
+      font-size: .72rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--gris); display: block; margin-bottom: .2rem;
+    }
+    .modal-campo .mc-valor {
+      font-size: .9rem; color: var(--texto); word-break: break-word;
+    }
+    .modal-campo .mc-valor.vacio { color: var(--gris); font-style: italic; }
+
+    .fotos-seccion { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: .5rem; }
+    .foto-link {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .55rem 1rem; background: var(--azul-light); color: var(--azul);
+      border: 1.5px solid var(--azul); border-radius: 7px; text-decoration: none;
+      font-size: .82rem; font-weight: 500; transition: background .2s, color .2s;
+    }
+    .foto-link:hover { background: var(--azul); color: white; }
+    .sin-fotos { font-size: .85rem; color: var(--gris); font-style: italic; }
+  </style>
+</head>
+<body>
+
+
+  <!-- ══ LOGIN OVERLAY ══ -->
+  <div class="login-overlay" id="login-overlay">
+    <div class="login-card">
+      <span class="login-icon" aria-hidden="true">🔐</span>
+      <h1>Acceso Admin</h1>
+      <p>Ático Marbella Centro</p>
+      <input type="password" id="login-password" placeholder="Contraseña de administrador" autocomplete="current-password">
+      <button class="btn-login" id="btn-login">Entrar</button>
+      <div class="login-error" id="login-error">Contraseña incorrecta. Inténtalo de nuevo.</div>
+    </div>
+  </div>
+
+  <!-- ══ TOPBAR ══ -->
+  <div class="topbar" id="topbar" style="display:none">
+    <span class="topbar-titulo">Admin · Registro Huéspedes</span>
+    <span class="topbar-info" id="topbar-info">Cargando…</span>
+    <div class="topbar-actions">
+      <button class="btn-sm btn-actualizar" id="btn-actualizar">↻ Actualizar</button>
+      <button class="btn-sm btn-logout" id="btn-logout">Cerrar sesión</button>
+    </div>
+  </div>
+
+  <!-- ══ CONTENIDO ══ -->
+  <div class="main-content" id="main-content" style="display:none">
+
+    <!-- Barra de búsqueda -->
+    <div class="search-bar">
+      <label for="search-input">Buscar</label>
+      <input type="search" id="search-input" class="search-input"
+             placeholder="Nombre, apellido, documento, email, fechas…">
+      <span class="search-count" id="search-count"></span>
+    </div>
+
+    <!-- Tabla -->
+    <div class="tabla-wrap">
+      <table class="tabla-registros" aria-label="Listado de registros">
+        <thead>
+          <tr>
+            <th>Reserva</th>
+            <th>Fecha registro</th>
+            <th>Huéspedes</th>
+            <th>Entrada</th>
+            <th>Salida</th>
+            <th>Email</th>
+            <th>Fotos</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-body">
+          <tr><td colspan="7" class="tabla-estado"><span class="icono">⏳</span>Cargando registros…</td></tr>
+        </tbody>
+      </table>
+      <div class="paginacion" id="paginacion" style="display:none">
+        <button class="btn-pag" id="btn-prev">← Anterior</button>
+        <span class="pag-info" id="pag-info"></span>
+        <button class="btn-pag" id="btn-next">Siguiente →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MODAL DETALLE ══ -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <h2 id="modal-titulo">Detalle del registro</h2>
+        <button class="modal-close" id="modal-close" aria-label="Cerrar">×</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    /* ══════════════════════════════════════════════════
+       CONFIGURACIÓN
+       WORKER_BASE debe ser siempre una URL absoluta del Worker.
+       NUNCA usar rutas relativas ('/api/...') porque en Cloudflare Pages
+       apuntarían al dominio de Pages, no al Worker.
+    ══════════════════════════════════════════════════ */
+    const WORKER_BASE  = 'https://registro-huespedes-v1.ce-australis.workers.dev'; // ← URL absoluta del Worker
+    const PAGE_SIZE    = 20;
+    const STORAGE_KEY  = 'adminToken';
+
+    /* ══════════════════════════════════════════════════
+       ESTADO
+    ══════════════════════════════════════════════════ */
+    let todosLosRegistros = [];
+    let todosLosGrupos = [];
+    let registrosFiltrados = [];
+    let paginaActual = 1;
+    let adminToken = '';
+
+    /* ══════════════════════════════════════════════════
+       INIT
+    ══════════════════════════════════════════════════ */
+    document.addEventListener('DOMContentLoaded', () => {
+      const tokenGuardado = localStorage.getItem(STORAGE_KEY);
+      if (tokenGuardado) {
+        adminToken = tokenGuardado;
+        mostrarDashboard();
+        cargarRegistros();
+      }
+      // else: el login-overlay ya está visible por defecto
+    });
+
+    /* ══════════════════════════════════════════════════
+       LOGIN
+    ══════════════════════════════════════════════════ */
+    const inputPassword = document.getElementById('login-password');
+    const btnLogin      = document.getElementById('btn-login');
+    const loginError    = document.getElementById('login-error');
+
+    inputPassword.addEventListener('keydown', e => { if (e.key === 'Enter') intentarLogin(); });
+    btnLogin.addEventListener('click', intentarLogin);
+
+    async function intentarLogin() {
+      const pw = inputPassword.value.trim();
+      if (!pw) return;
+      btnLogin.disabled = true;
+      btnLogin.textContent = 'Verificando…';
+      loginError.classList.remove('visible');
+
+      try {
+        const res = await fetch(WORKER_BASE + '/api/registros', {
+          headers: { 'Authorization': 'Bearer ' + pw },
+        });
+        if (res.ok) {
+          adminToken = pw;
+          localStorage.setItem(STORAGE_KEY, pw);
+          const data = await res.json();
+          mostrarDashboard();
+          procesarRegistros(data);
+        } else {
+          loginError.classList.add('visible');
+          inputPassword.value = '';
+          inputPassword.focus();
+        }
+      } catch (err) {
+        loginError.textContent = 'Error de conexión: ' + err.message;
+        loginError.classList.add('visible');
+      } finally {
+        btnLogin.disabled = false;
+        btnLogin.textContent = 'Entrar';
+      }
+    }
+
+    /* ══════════════════════════════════════════════════
+       DASHBOARD
+    ══════════════════════════════════════════════════ */
+    function mostrarDashboard() {
+      document.getElementById('login-overlay').classList.add('oculto');
+      document.getElementById('topbar').style.display = '';
+      document.getElementById('main-content').style.display = '';
+    }
+
+    document.getElementById('btn-logout').addEventListener('click', () => {
+      localStorage.removeItem(STORAGE_KEY);
+      adminToken = '';
+      todosLosRegistros = [];
+      todosLosGrupos = [];
+      registrosFiltrados = [];
+      document.getElementById('login-overlay').classList.remove('oculto');
+      document.getElementById('topbar').style.display = 'none';
+      document.getElementById('main-content').style.display = 'none';
+      inputPassword.value = '';
+    });
+
+    /* ══════════════════════════════════════════════════
+       CARGA DE DATOS
+    ══════════════════════════════════════════════════ */
+    const btnActualizar = document.getElementById('btn-actualizar');
+    btnActualizar.addEventListener('click', cargarRegistros);
+
+    async function cargarRegistros() {
+      btnActualizar.disabled = true;
+      btnActualizar.textContent = '⏳ Cargando…';
+      document.getElementById('tabla-body').innerHTML =
+        '<tr><td colspan="7" class="tabla-estado"><span class="icono">⏳</span>Actualizando registros…</td></tr>';
+      document.getElementById('paginacion').style.display = 'none';
+
+      try {
+        const res = await fetch(WORKER_BASE + '/api/registros', {
+          headers: { 'Authorization': 'Bearer ' + adminToken },
+        });
+        if (res.status === 401) {
+          localStorage.removeItem(STORAGE_KEY);
+          location.reload();
+          return;
+        }
+        const data = await res.json();
+        procesarRegistros(data);
+      } catch (err) {
+        document.getElementById('tabla-body').innerHTML =
+          `<tr><td colspan="7" class="tabla-estado"><span class="icono">⚠️</span>Error cargando datos: ${err.message}</td></tr>`;
+      } finally {
+        btnActualizar.disabled = false;
+        btnActualizar.textContent = '↻ Actualizar';
+      }
+    }
+
+    function procesarRegistros(data) {
+      if (data.status !== 'ok') {
+        document.getElementById('tabla-body').innerHTML =
+          `<tr><td colspan="7" class="tabla-estado"><span class="icono">⚠️</span>Error: ${data.message || 'Respuesta inesperada'}</td></tr>`;
+        return;
+      }
+      // Ordenar por timestamp descendente (más reciente primero)
+      todosLosRegistros = (data.registros || []).sort((a, b) =>
+        new Date(b.timestamp) - new Date(a.timestamp)
+      );
+      agruparRegistros();
+      document.getElementById('topbar-info').textContent =
+        `${todosLosRegistros.length} huéspedes · ${todosLosGrupos.length} reservas · Ático Marbella Centro`;
+      aplicarFiltro();
+    }
+
+    function agruparRegistros() {
+      const mapa = {};
+      todosLosRegistros.forEach(r => {
+        const rid = r.reservaId || ('_' + r.id);
+        if (!mapa[rid]) mapa[rid] = [];
+        mapa[rid].push(r);
+      });
+      todosLosGrupos = Object.entries(mapa).map(([rid, huespedes]) => ({ rid, huespedes }));
+    }
+
+    /* ══════════════════════════════════════════════════
+       BÚSQUEDA / FILTRO (client-side)
+    ══════════════════════════════════════════════════ */
+    document.getElementById('search-input').addEventListener('input', () => {
+      paginaActual = 1;
+      aplicarFiltro();
+    });
+
+    function aplicarFiltro() {
+      const q = document.getElementById('search-input').value.toLowerCase().trim();
+      if (!q) {
+        registrosFiltrados = [...todosLosGrupos];
+      } else {
+        registrosFiltrados = todosLosGrupos.filter(({ huespedes }) =>
+          huespedes.some(r => [
+            r.reservaId, r.nombre, r.apellido1, r.apellido2,
+            r.tipoDocumento, r.numeroDocumento,
+            r.email, r.telefono,
+            r.fechaEntrada, r.fechaSalida, r.nacionalidad,
+          ].join(' ').toLowerCase().includes(q))
+        );
+      }
+      const total     = todosLosGrupos.length;
+      const filtrados = registrosFiltrados.length;
+      document.getElementById('search-count').textContent =
+        q ? `${filtrados} de ${total} reservas` : `${total} reservas`;
+      renderizarTabla();
+    }
+
+    /* ══════════════════════════════════════════════════
+       TABLA Y PAGINACIÓN
+    ══════════════════════════════════════════════════ */
+    function renderizarTabla() {
+      const tbody = document.getElementById('tabla-body');
+      const total = registrosFiltrados.length;
+
+      if (total === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" class="tabla-estado"><span class="icono">🔍</span>No se encontraron registros.</td></tr>';
+        document.getElementById('paginacion').style.display = 'none';
+        return;
+      }
+
+      const totalPaginas = Math.ceil(total / PAGE_SIZE);
+      paginaActual = Math.min(paginaActual, totalPaginas);
+      const inicio = (paginaActual - 1) * PAGE_SIZE;
+      const fin    = Math.min(inicio + PAGE_SIZE, total);
+      const pagina = registrosFiltrados.slice(inicio, fin);
+
+      tbody.innerHTML = pagina.map(({ rid, huespedes }) => {
+        const r0 = huespedes[0];
+        const numH = huespedes.length;
+        const nombres = huespedes.map(r => esc(r.nombre) + ' ' + esc(r.apellido1)).join(', ');
+        const tieneFotos = huespedes.some(r => r.fotoAnverso || r.fotoReverso);
+        const fotoBadge  = tieneFotos
+          ? '<span class="badge-fotos">📷 Sí</span>'
+          : '<span class="badge-no">—</span>';
+        const ts = r0.timestamp ? r0.timestamp.substring(0, 16).replace('T', ' ') : '—';
+        const huespLabel = numH > 1 ? `(${numH}) ` : '';
+        return `<tr data-rid="${esc(rid)}">
+          <td class="td-doc">${esc(r0.reservaId)}</td>
+          <td class="td-fecha">${ts}</td>
+          <td class="td-nombre">${huespLabel}${nombres}</td>
+          <td class="td-fecha">${formatearFecha(r0.fechaEntrada)}</td>
+          <td class="td-fecha">${formatearFecha(r0.fechaSalida)}</td>
+          <td>${esc(r0.email) || '<span class="badge-no">—</span>'}</td>
+          <td>${fotoBadge}</td>
+        </tr>`;
+      }).join('');
+
+      /* Eventos click en filas */
+      tbody.querySelectorAll('tr[data-rid]').forEach(tr => {
+        tr.addEventListener('click', () => abrirDetalleReserva(tr.dataset.rid));
+      });
+
+      /* Paginación */
+      const pagDiv = document.getElementById('paginacion');
+      pagDiv.style.display = totalPaginas > 1 ? 'flex' : 'none';
+      document.getElementById('pag-info').textContent =
+        `Página ${paginaActual} de ${totalPaginas}`;
+      document.getElementById('btn-prev').disabled = paginaActual === 1;
+      document.getElementById('btn-next').disabled = paginaActual === totalPaginas;
+    }
+
+    document.getElementById('btn-prev').addEventListener('click', () => {
+      if (paginaActual > 1) { paginaActual--; renderizarTabla(); }
+    });
+    document.getElementById('btn-next').addEventListener('click', () => {
+      const total = Math.ceil(registrosFiltrados.length / PAGE_SIZE);
+      if (paginaActual < total) { paginaActual++; renderizarTabla(); }
+    });
+
+    /* ══════════════════════════════════════════════════
+       MODAL DETALLE
+    ══════════════════════════════════════════════════ */
+    const modalOverlay = document.getElementById('modal-overlay');
+    const modalBody    = document.getElementById('modal-body');
+    const modalTitulo  = document.getElementById('modal-titulo');
+
+    document.getElementById('modal-close').addEventListener('click', cerrarModal);
+    modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) cerrarModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarModal(); });
+
+    function cerrarModal() {
+      modalOverlay.classList.remove('visible');
+    }
+
+    function abrirDetalleReserva(rid) {
+      const grupo = todosLosGrupos.find(g => g.rid === rid);
+      if (!grupo) return;
+      const { huespedes } = grupo;
+      const r0 = huespedes[0];
+
+      modalTitulo.textContent = huespedes.length === 1
+        ? [r0.nombre, r0.apellido1, r0.apellido2].filter(Boolean).join(' ')
+        : 'Reserva ' + r0.reservaId + ' · ' + huespedes.length + ' huéspedes';
+
+      const huespDesHTML = huespedes.map((r, i) => {
+        const fotosHTML = (() => {
+          if (!r.fotoAnverso && !r.fotoReverso) {
+            return '<p class="sin-fotos">No se adjuntaron fotografías del documento.</p>';
+          }
+          let html = '<div class="fotos-seccion">';
+          if (r.fotoAnverso) html += `<a href="${r.fotoAnverso}" target="_blank" rel="noopener" class="foto-link">📷 Ver anverso → Drive</a>`;
+          if (r.fotoReverso) html += `<a href="${r.fotoReverso}" target="_blank" rel="noopener" class="foto-link">📷 Ver reverso → Drive</a>`;
+          html += '</div>';
+          return html;
+        })();
+        return `
+          ${huespedes.length > 1 ? `<div class="modal-seccion-titulo" style="margin-top:${i > 0 ? '1rem' : '0'}">👤 Huésped ${i + 1}</div>` : ''}
+          <div class="modal-grid">
+            ${campo('Nombre',           r.nombre)}
+            ${campo('Primer apellido',  r.apellido1)}
+            ${campo('Segundo apellido', r.apellido2)}
+            ${campo('Fecha nacimiento', formatearFecha(r.fechaNacimiento))}
+            ${campo('Sexo',             r.sexo)}
+            ${campo('Nacionalidad',     r.nacionalidad)}
+          </div>
+          <div class="modal-grid" style="margin-top:.7rem">
+            ${campo('Tipo documento',  r.tipoDocumento)}
+            ${campo('Nº documento',    r.numeroDocumento)}
+            ${campo('F. expedición',   formatearFecha(r.fechaExpedicion))}
+            ${campo('Nº soporte',      r.numeroSoporte)}
+          </div>
+          <div style="margin-top:.75rem">${fotosHTML}</div>
+        `;
+      }).join('<hr style="margin:1rem 0;border:none;border-top:1px solid var(--borde)">');
+
+      modalBody.innerHTML = `
+        <div class="modal-seccion">
+          <div class="modal-seccion-titulo">🔖 Reserva</div>
+          <div class="modal-grid">
+            ${campo('ReservaID',    r0.reservaId)}
+            ${campo('Código caja',  r0.codigoCaja)}
+          </div>
+        </div>
+        <div class="modal-seccion">
+          <div class="modal-seccion-titulo">📅 Estancia</div>
+          <div class="modal-grid">
+            ${campo('Fecha entrada', formatearFecha(r0.fechaEntrada))}
+            ${campo('Fecha salida',  formatearFecha(r0.fechaSalida))}
+          </div>
+        </div>
+        <div class="modal-seccion">
+          <div class="modal-seccion-titulo">📱 Contacto</div>
+          <div class="modal-grid">
+            ${campo('Teléfono', r0.telefono)}
+            ${campo('Email',    r0.email)}
+          </div>
+        </div>
+        <div class="modal-seccion">
+          <div class="modal-seccion-titulo">👥 Huéspedes (${huespedes.length})</div>
+          ${huespDesHTML}
+        </div>
+        <div class="modal-seccion">
+          <div class="modal-seccion-titulo">🗂 Meta</div>
+          <div class="modal-grid">
+            ${campo('Idioma',    r0.idioma === 'en' ? 'English' : 'Español')}
+            ${campo('Timestamp', r0.timestamp)}
+          </div>
+          ${r0.carpetaDrive ? `<div style="margin-top:.75rem"><a href="${r0.carpetaDrive}" target="_blank" rel="noopener" class="foto-link">📁 Carpeta en Drive</a></div>` : ''}
+        </div>
+      `;
+
+      modalOverlay.classList.add('visible');
+    }
+
+    function formatearFecha(fecha) {
+      if (!fecha || fecha === '—') return '—';
+      // Formato ISO puro YYYY-MM-DD (input type=date) — sin conversión Date para evitar desfase UTC
+      const iso = fecha.match(/^(\d{4})-(\d{2})-(\d{2})/);
+      if (iso) return iso[3] + '-' + iso[2] + '-' + iso[1];
+      // Formato largo de Sheets "Wed Jan 22 1986 00:00:00 GMT+0100"
+      const d = new Date(fecha);
+      if (isNaN(d.getTime())) return fecha; // no parseable: devolver tal cual
+      const dd   = String(d.getDate()).padStart(2, '0');
+      const mm   = String(d.getMonth() + 1).padStart(2, '0');
+      const yyyy = d.getFullYear();
+      return dd + '-' + mm + '-' + yyyy;
+    }
+
+    function campo(label, valor, fullWidth = false) {
+      const vacio = !valor || valor.trim() === '' || valor === '—';
+      return `<div class="modal-campo${fullWidth ? '" style="grid-column:1/-1' : ''}">
+        <span class="mc-label">${label}</span>
+        <span class="mc-valor${vacio ? ' vacio' : ''}">${vacio ? '—' : esc(valor)}</span>
+      </div>`;
+    }
+
+    /* ══════════════════════════════════════════════════
+       HELPERS
+    ══════════════════════════════════════════════════ */
+    function esc(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+  </script>
+</body>
+</html>
