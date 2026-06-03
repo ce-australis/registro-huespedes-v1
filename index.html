@@ -37,15 +37,15 @@
 
     header { background: var(--azul); color: white; padding: 2.5rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
 
-header h1 { 
-  font-family: 'Rozha One', serif; 
-  font-size: clamp(1.65rem,4vw,2.5rem); 
-  font-weight: 400; 
-  letter-spacing: .03em; 
+header h1 {
+  font-family: 'Rozha One', serif;
+  font-size: clamp(1.65rem,4vw,2.5rem);
+  font-weight: 400;
+  letter-spacing: .03em;
   line-height: 1.25;
-  margin-bottom: .5rem; 
-  position: relative; 
-  z-index: 1; 
+  margin-bottom: .5rem;
+  position: relative;
+  z-index: 1;
 }
     header p  { font-size: .82rem; opacity: .65; letter-spacing: .1em; text-transform: uppercase; position: relative; z-index: 1; }
 
@@ -280,9 +280,9 @@ header h1 {
 
   <script>
   /* ══════════════════════════════════════════════════
-     CONFIG — ENTORNO DEV
+     CONFIG — V02
   ══════════════════════════════════════════════════ */
-const WORKER_DEV_URL = 'https://worker-registro-prod.ce-australis.workers.dev';
+  const WORKER_DEV_URL = 'https://worker-registro-prod.ce-australis.workers.dev';
   const API_TOKEN      = 'AtMb2025!xK9#qR7vL';
   const MAX_IMG_BYTES  = 4 * 1024 * 1024; // 4 MB
 
@@ -296,6 +296,7 @@ const WORKER_DEV_URL = 'https://worker-registro-prod.ce-australis.workers.dev';
       secEstancia: 'Fechas de Estancia', secContacto: 'Datos de Contacto', sec5: 'Consentimientos y Envío',
       huesped: 'Huésped', guest: 'Huésped',
       secPersonal: '👤 Datos personales', secDoc: '📄 Documento de identidad',
+      secDomicilio: '🏠 Domicilio habitual',
       btnAnadir: 'Añadir otro huésped',
       btnEliminar: 'Eliminar',
       lblNombre: 'Nombre *', lblApellido1: 'Primer apellido *', lblApellido2: 'Segundo apellido',
@@ -306,6 +307,10 @@ const WORKER_DEV_URL = 'https://worker-registro-prod.ce-australis.workers.dev';
       tipodocPasaporte: 'Pasaporte', tipodocTarjeta: 'Tarjeta de Residencia', tipodocOtro: 'Otro',
       lblNumdoc: 'Número de documento *', lblFexpedicion: 'Fecha de expedición *',
       lblSoporte: 'Número de soporte (DNI)', notaSoporte: 'Número en el reverso del DNI (ej. AAA000000).',
+      lblDomicilio: 'Calle y número *',
+      lblCp: 'Código postal *',
+      lblPaisRes: 'País de residencia *',
+      notaDomicilio: 'Domicilio habitual del huésped — requerido por el Ministerio del Interior (RD 933/2021).',
       fotosTitulo: 'Fotografías del documento (opcional)',
       fotosOpcional: 'Adjunte una foto del anverso y, si puede, del reverso. Solo se aceptan imágenes JPG o PNG (máx. 4 MB). Si prefiere no adjuntarlas, puede enviárnoslas por WhatsApp al +34 611 164 242.',
       fotoFrontalTitulo: 'Cara frontal', fotoFrontalSub: 'Anverso · JPG / PNG', fotoFrontalBtn: 'Elegir imagen',
@@ -336,6 +341,7 @@ const WORKER_DEV_URL = 'https://worker-registro-prod.ce-australis.workers.dev';
       secEstancia: 'Stay Dates', secContacto: 'Contact Details', sec5: 'Consent & Submit',
       huesped: 'Guest', guest: 'Guest',
       secPersonal: '👤 Personal details', secDoc: '📄 Identity document',
+      secDomicilio: '🏠 Home address',
       btnAnadir: 'Add another guest',
       btnEliminar: 'Remove',
       lblNombre: 'First name *', lblApellido1: 'First surname *', lblApellido2: 'Second surname',
@@ -346,6 +352,10 @@ const WORKER_DEV_URL = 'https://worker-registro-prod.ce-australis.workers.dev';
       tipodocPasaporte: 'Passport', tipodocTarjeta: 'Residence Card', tipodocOtro: 'Other',
       lblNumdoc: 'Document number *', lblFexpedicion: 'Issue date *',
       lblSoporte: 'Support number (DNI)', notaSoporte: 'Number on the back of the Spanish ID card (e.g. AAA000000).',
+      lblDomicilio: 'Street address *',
+      lblCp: 'Postal code *',
+      lblPaisRes: 'Country of residence *',
+      notaDomicilio: 'Guest\'s usual home address — required by the Spanish Ministry of Interior (RD 933/2021).',
       fotosTitulo: 'Document photographs (optional)',
       fotosOpcional: 'Please attach a photo of the front and, if possible, the back. Only JPG or PNG (max. 4 MB). If you prefer not to attach them, send them via WhatsApp to +34 611 164 242.',
       fotoFrontalTitulo: 'Front side', fotoFrontalSub: 'Obverse · JPG / PNG', fotoFrontalBtn: 'Choose image',
@@ -464,6 +474,27 @@ const WORKER_DEV_URL = 'https://worker-registro-prod.ce-australis.workers.dev';
         <p class="nota" id="nota-soporte-${idx}"></p>
       </div>
 
+      <!-- DOMICILIO HABITUAL (obligatorio SES — RD 933/2021) -->
+      <div class="campo-seccion-sub" id="sub-dom-${idx}"></div>
+      <div class="campo">
+        <label for="domicilio-${idx}" id="lbl-domicilio-${idx}"></label>
+        <input type="text" id="domicilio-${idx}" autocomplete="street-address" required>
+        <span class="mensaje-error" id="err-domicilio-${idx}"></span>
+        <p class="nota" id="nota-domicilio-${idx}"></p>
+      </div>
+      <div class="campo-fila">
+        <div class="campo">
+          <label for="cp-${idx}" id="lbl-cp-${idx}"></label>
+          <input type="text" id="cp-${idx}" autocomplete="postal-code" required>
+          <span class="mensaje-error" id="err-cp-${idx}"></span>
+        </div>
+        <div class="campo">
+          <label for="paisres-${idx}" id="lbl-paisres-${idx}"></label>
+          <input type="text" id="paisres-${idx}" autocomplete="country-name" required>
+          <span class="mensaje-error" id="err-paisres-${idx}"></span>
+        </div>
+      </div>
+
       <!-- FOTOS -->
       <div class="fotos-wrap">
         <span class="fotos-label" id="fotos-titulo-${idx}"></span>
@@ -542,12 +573,12 @@ const WORKER_DEV_URL = 'https://worker-registro-prod.ce-australis.workers.dev';
 
   /** Configura los listeners de un bloque recién creado */
   function inicializarBloqueHuesped(idx) {
-    // Mostrar campo soporte solo si el tipo de doc es DNI
+    // Mostrar campo soporte solo si el tipo de doc es DNI o NIE
     var tipodocEl = document.getElementById('tipodoc-' + idx);
     if (tipodocEl) {
       tipodocEl.addEventListener('change', function() {
         var soporte = document.getElementById('campo-soporte-' + idx);
-        if (soporte) soporte.style.display = this.value === 'DNI' ? 'block' : 'none';
+        if (soporte) soporte.style.display = (this.value === 'DNI' || this.value === 'NIE') ? 'block' : 'none';
       });
     }
     // Preview fotos
@@ -569,6 +600,7 @@ const WORKER_DEV_URL = 'https://worker-registro-prod.ce-australis.workers.dev';
 
     setText('sub-personal-' + idx, t.secPersonal);
     setText('sub-doc-'      + idx, t.secDoc);
+    setText('sub-dom-'      + idx, t.secDomicilio);
 
     // Campos personales
     setText('lbl-nombre-'   + idx, t.lblNombre);
@@ -592,6 +624,12 @@ const WORKER_DEV_URL = 'https://worker-registro-prod.ce-australis.workers.dev';
     setText('tdpas-' + idx, t.tipodocPasaporte);
     setText('tdtar-' + idx, t.tipodocTarjeta);
     setText('tdotr-' + idx, t.tipodocOtro);
+
+    // Domicilio
+    setText('lbl-domicilio-'  + idx, t.lblDomicilio);
+    setText('nota-domicilio-' + idx, t.notaDomicilio);
+    setText('lbl-cp-'         + idx, t.lblCp);
+    setText('lbl-paisres-'    + idx, t.lblPaisRes);
 
     // Fotos
     setText('fotos-titulo-'  + idx, t.fotosTitulo);
@@ -746,6 +784,10 @@ const WORKER_DEV_URL = 'https://worker-registro-prod.ce-australis.workers.dev';
       reqSelect('tipodoc-'+ idx, 'err-tipodoc-'+ idx);
       req('numdoc-'    + idx, 'err-numdoc-'    + idx);
       reqDate('fexp-'  + idx, 'err-fexp-'      + idx);
+      // Domicilio habitual (obligatorio para SES)
+      req('domicilio-' + idx, 'err-domicilio-' + idx);
+      req('cp-'        + idx, 'err-cp-'        + idx);
+      req('paisres-'   + idx, 'err-paisres-'   + idx);
     });
 
     // Estancia
@@ -818,8 +860,6 @@ const WORKER_DEV_URL = 'https://worker-registro-prod.ce-australis.workers.dev';
     };
   }
 
-
-
   /* ══════════════════════════════════════════════════
      ENVÍO
   ══════════════════════════════════════════════════ */
@@ -837,8 +877,8 @@ const WORKER_DEV_URL = 'https://worker-registro-prod.ce-australis.workers.dev';
     var btn = document.getElementById('btn-enviar');
     btn.disabled = true;
     btn.textContent = currentLang === 'es' ? 'Enviando…' : 'Sending…';
-var err = document.getElementById('error-envio');
-if (err) err.style.display = 'none';document.getElementById('debug-panel')?.classList.remove('visible');
+    var err = document.getElementById('error-envio');
+    if (err) err.style.display = 'none';
     var progreso = iniciarProgreso();
 
     // Leer fotos de todos los huéspedes
@@ -859,6 +899,10 @@ if (err) err.style.display = 'none';document.getElementById('debug-panel')?.clas
           numeroDocumento: g('numdoc-'    + idx),
           fechaExpedicion: g('fexp-'      + idx),
           numeroSoporte:   g('soporte-'   + idx),
+          // ── Domicilio habitual (V02 — requerido para XML SES) ──
+          domicilio:       g('domicilio-' + idx),
+          codigoPostal:    g('cp-'        + idx),
+          paisResidencia:  g('paisres-'   + idx),
           fotoFrontalB64:  null, fotoFrontalMime: null,
           fotoTraseroB64:  null, fotoTraseroMime: null,
         };
@@ -877,7 +921,6 @@ if (err) err.style.display = 'none';document.getElementById('debug-panel')?.clas
     } catch (err) {
       progreso.completar();
       btn.disabled = false; btn.textContent = T[currentLang].btnEnviar;
-      mostrarDebug('Error leyendo fotos', { error: err.message });
       showErrorEnvio();
       return;
     }
@@ -899,13 +942,11 @@ if (err) err.style.display = 'none';document.getElementById('debug-panel')?.clas
         body:    JSON.stringify(payload),
       });
       var data = await res.json();
-      mostrarDebug('Respuesta OK (' + res.status + ')', data);
 
       if (data.status === 'ok') {
         progreso.completar();
         document.getElementById('form-registro').style.display = 'none';
 
-        // Rellenar badge de confirmación con ReservaID y CodigoCaja si los devuelve el server
         if (data.reservaId) {
           setText('conf-reserva-id',  data.reservaId);
           setText('conf-codigo-caja', data.codigoCaja || '—');
@@ -919,18 +960,17 @@ if (err) err.style.display = 'none';document.getElementById('debug-panel')?.clas
         conf.scrollIntoView({ behavior: 'smooth' });
       } else {
         progreso.completar();
-        mostrarDebug('Apps Script devolvió error', data);
         showErrorEnvio();
       }
     } catch (err) {
       progreso.completar();
-      mostrarDebug('Error de red / CORS', { error: err.message, workerUrl: WORKER_DEV_URL });
       showErrorEnvio();
     } finally {
       btn.disabled = false; btn.textContent = T[currentLang].btnEnviar;
     }
   });
-function mostrarDebug() {} // no hace nada, solo evita el crash
+
+  function mostrarDebug() {} // stub — no hace nada en producción
 
   function showErrorEnvio() {
     var b = document.getElementById('error-envio');
