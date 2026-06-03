@@ -2,8 +2,15 @@
  * ============================================================
  *  REGISTRO DE HUÉSPEDES — Ático Marbella Centro
  *  Google Apps Script (Web App) — V02
- *  v5 — Email al huésped rediseñado (nuevo diseño V2)
+ *  v6 — Dirección a nivel de reserva (formulario rediseñado DEV01)
  * ============================================================
+ *
+ *  NOVEDADES v6 respecto a v5:
+ *  - La dirección es ÚNICA por reserva (7 campos: Tipo Vía, Nombre Vía,
+ *    Número, CP, Población, Ciudad, País), repetida en cada fila de huésped.
+ *  - Sheet pasa a 28 columnas (cols 14–20 = dirección de la reserva).
+ *  - El XML SES usa la dirección de la reserva para cada viajero.
+ *  - Compatible con el formulario multi-huésped rediseñado (DEV01/index.html).
  *
  *  NOVEDADES v5 respecto a v4:
  *  - Templates HTML del email al huésped completamente rediseñados
@@ -39,7 +46,9 @@ const EMAIL_NOTIFICACION = 'ce.australis@gmail.com,aticomarbellacentro@gmail.com
 const SES_CODIGO_ESTABLECIMIENTO = 'ESFCTU0000290290000970200000000000000000VFT/MA/475163';
 const SES_TIPO_PAGO_DEFAULT      = 'PLATF'; // Plataforma de pago (Airbnb/Booking)
 
-/* ── Cabeceras de la hoja (24 columnas) ── */
+/* ── Cabeceras de la hoja (28 columnas) ──
+   v6: la dirección es a nivel de RESERVA (7 campos), repetida en cada
+   fila de huésped. Coincide con el formulario rediseñado (DEV01). */
 const HEADERS = [
   'Timestamp',          // col  1
   'ReservaID',          // col  2
@@ -54,17 +63,21 @@ const HEADERS = [
   'Nº Documento',       // col 11
   'Fecha Expedición',   // col 12
   'Nº Soporte',         // col 13
-  'Domicilio',          // col 14 ← NUEVO v4
-  'Código Postal',      // col 15 ← NUEVO v4
-  'País Residencia',    // col 16 ← NUEVO v4
-  'Fecha Entrada',      // col 17
-  'Fecha Salida',       // col 18
-  'Teléfono',           // col 19
-  'Email',              // col 20
-  'Idioma',             // col 21
-  'Carpeta Documentos', // col 22
-  'Foto Anverso',       // col 23
-  'Foto Reverso',       // col 24
+  'Tipo Vía',           // col 14 ← dirección reserva
+  'Nombre Vía',         // col 15 ← dirección reserva
+  'Número',             // col 16 ← dirección reserva
+  'Código Postal',      // col 17 ← dirección reserva
+  'Población',          // col 18 ← dirección reserva
+  'Ciudad',             // col 19 ← dirección reserva
+  'País Residencia',    // col 20 ← dirección reserva
+  'Fecha Entrada',      // col 21
+  'Fecha Salida',       // col 22
+  'Teléfono',           // col 23
+  'Email',              // col 24
+  'Idioma',             // col 25
+  'Carpeta Documentos', // col 26
+  'Foto Anverso',       // col 27
+  'Foto Reverso',       // col 28
 ];
 
 /* ══════════════════════════════════════════════════
@@ -130,7 +143,7 @@ function getRegistro(id) {
   return jsonResponse({ status: 'ok', registro: filaAObjeto(row, id) });
 }
 
-/* Mapea una fila de Sheets a un objeto con claves legibles — v4 (24 columnas) */
+/* Mapea una fila de Sheets a un objeto con claves legibles — v6 (28 columnas) */
 function filaAObjeto(row, filaNum) {
   return {
     id:              filaNum,
@@ -147,17 +160,21 @@ function filaAObjeto(row, filaNum) {
     numeroDocumento: String(row[10] || ''),
     fechaExpedicion: String(row[11] || ''),
     numeroSoporte:   String(row[12] || ''),
-    domicilio:       String(row[13] || ''),   // ← col 14 NUEVO
-    codigoPostal:    String(row[14] || ''),   // ← col 15 NUEVO
-    paisResidencia:  String(row[15] || ''),   // ← col 16 NUEVO
-    fechaEntrada:    String(row[16] || ''),
-    fechaSalida:     String(row[17] || ''),
-    telefono:        String(row[18] || ''),
-    email:           String(row[19] || ''),
-    idioma:          String(row[20] || ''),
-    carpetaDrive:    String(row[21] || ''),
-    fotoAnverso:     String(row[22] || ''),
-    fotoReverso:     String(row[23] || ''),
+    viaTipo:         String(row[13] || ''),   // ← col 14 dirección reserva
+    viaNombre:       String(row[14] || ''),   // ← col 15 dirección reserva
+    viaNumero:       String(row[15] || ''),   // ← col 16 dirección reserva
+    codigoPostal:    String(row[16] || ''),   // ← col 17 dirección reserva
+    poblacion:       String(row[17] || ''),   // ← col 18 dirección reserva
+    ciudad:          String(row[18] || ''),   // ← col 19 dirección reserva
+    paisResidencia:  String(row[19] || ''),   // ← col 20 dirección reserva
+    fechaEntrada:    String(row[20] || ''),
+    fechaSalida:     String(row[21] || ''),
+    telefono:        String(row[22] || ''),
+    email:           String(row[23] || ''),
+    idioma:          String(row[24] || ''),
+    carpetaDrive:    String(row[25] || ''),
+    fotoAnverso:     String(row[26] || ''),
+    fotoReverso:     String(row[27] || ''),
   };
 }
 
@@ -239,17 +256,21 @@ function doPost(e) {
         clean(h.numeroDocumento),             // col 11 Nº Documento
         clean(h.fechaExpedicion),             // col 12 Fecha Expedición
         clean(h.numeroSoporte),               // col 13 Nº Soporte
-        clean(h.domicilio),                   // col 14 Domicilio ← NUEVO
-        clean(h.codigoPostal),                // col 15 Código Postal ← NUEVO
-        clean(h.paisResidencia),              // col 16 País Residencia ← NUEVO
-        clean(reserva.fechaEntrada),          // col 17 Fecha Entrada
-        clean(reserva.fechaSalida),           // col 18 Fecha Salida
-        clean(reserva.telefono),              // col 19 Teléfono
-        clean(reserva.email),                 // col 20 Email
-        clean(reserva.idioma || ''),          // col 21 Idioma
-        carpetaUrl,                           // col 22 Carpeta Documentos
-        linkFrontal,                          // col 23 Foto Anverso
-        linkTrasero,                          // col 24 Foto Reverso
+        clean(reserva.viaTipo),               // col 14 Tipo Vía ← dirección reserva
+        clean(reserva.viaNombre),             // col 15 Nombre Vía ← dirección reserva
+        clean(reserva.viaNumero),             // col 16 Número ← dirección reserva
+        clean(reserva.codigoPostal),          // col 17 Código Postal ← dirección reserva
+        clean(reserva.poblacion),             // col 18 Población ← dirección reserva
+        clean(reserva.ciudad),                // col 19 Ciudad ← dirección reserva
+        clean(reserva.pais),                  // col 20 País Residencia ← dirección reserva
+        clean(reserva.fechaEntrada),          // col 21 Fecha Entrada
+        clean(reserva.fechaSalida),           // col 22 Fecha Salida
+        clean(reserva.telefono),              // col 23 Teléfono
+        clean(reserva.email),                 // col 24 Email
+        clean(reserva.idioma || ''),          // col 25 Idioma
+        carpetaUrl,                           // col 26 Carpeta Documentos
+        linkFrontal,                          // col 27 Foto Anverso
+        linkTrasero,                          // col 28 Foto Reverso
       ];
 
       sheet.appendRow(row);
@@ -309,13 +330,21 @@ function generarXMLSES(reservaId, reserva, huespedes) {
   const fechaEntradaXml = fechaConHora(clean(reserva.fechaEntrada), '14:00:00');
   const fechaSalidaXml  = fechaConHora(clean(reserva.fechaSalida),  '11:00:00');
 
+  /* ── Dirección a nivel de RESERVA (compartida por todos los viajeros) ── */
+  const dirCalle     = [clean(reserva.viaTipo), clean(reserva.viaNombre), clean(reserva.viaNumero)]
+                         .filter(function(x) { return x; }).join(' ');
+  const dirCP        = clean(reserva.codigoPostal);
+  const dirPaisISO   = paisAIso3(clean(reserva.pais));
+  const dirMunicipio = clean(reserva.poblacion) || clean(reserva.ciudad);
+  const municipioXml = dirMunicipio
+    ? '          <nombreMunicipio>' + escXml(dirMunicipio) + '</nombreMunicipio>\n'
+    : '';
+
   let personasXml = '';
   huespedes.forEach(function(h) {
     const tipoDocSES = mapearTipoDoc(clean(h.tipoDocumento));
     const sexoSES    = mapearSexo(clean(h.sexo));
     const nacISO     = paisAIso3(clean(h.nacionalidad));
-    const paisResISO = paisAIso3(clean(h.paisResidencia));
-    const esEspana   = (paisResISO === 'ESP');
 
     // apellido2 solo si tipoDocumento = NIF
     const apellido2Xml = (tipoDocSES === 'NIF' && clean(h.apellido2))
@@ -333,11 +362,6 @@ function generarXMLSES(reservaId, reserva, huespedes) {
       ? '      <soporteDocumento>' + escXml(clean(h.numeroSoporte)) + '</soporteDocumento>\n'
       : '';
 
-    // Bloque dirección: codigoMunicipio si ESP, nombreMunicipio si extranjero
-    const municipioXml = esEspana
-      ? '' // no añadimos codigoMunicipio porque no lo tenemos; el campo es opcional si se omite
-      : '          <nombreMunicipio>No informado</nombreMunicipio>\n';
-
     personasXml +=
       '    <persona>\n' +
       '      <rol>VI</rol>\n' +
@@ -350,9 +374,9 @@ function generarXMLSES(reservaId, reserva, huespedes) {
       (nacISO ? '      <nacionalidad>' + nacISO + '</nacionalidad>\n' : '') +
       '      <sexo>' + sexoSES + '</sexo>\n' +
       '      <direccion>\n' +
-      '          <direccion>' + escXml(clean(h.domicilio)) + '</direccion>\n' +
-      '          <codigoPostal>' + escXml(clean(h.codigoPostal)) + '</codigoPostal>\n' +
-      '          <pais>' + paisResISO + '</pais>\n' +
+      '          <direccion>' + escXml(dirCalle) + '</direccion>\n' +
+      '          <codigoPostal>' + escXml(dirCP) + '</codigoPostal>\n' +
+      '          <pais>' + dirPaisISO + '</pais>\n' +
       municipioXml +
       '      </direccion>\n' +
       '      <correo>' + escXml(clean(reserva.email)) + '</correo>\n' +
@@ -487,11 +511,17 @@ function enviarNotificacion(reservaId, codigoCaja, reserva, huespedes) {
       '  Tipo documento  : ' + clean(h.tipoDocumento)   + '\n' +
       '  Nº documento    : ' + clean(h.numeroDocumento) + '\n' +
       '  Fecha expedición: ' + clean(h.fechaExpedicion) + '\n' +
-      '  Nº soporte      : ' + clean(h.numeroSoporte)   + '\n' +
-      '  Domicilio       : ' + clean(h.domicilio)       + '\n' +
-      '  Código postal   : ' + clean(h.codigoPostal)    + '\n' +
-      '  País residencia : ' + clean(h.paisResidencia)  + '\n';
+      '  Nº soporte      : ' + clean(h.numeroSoporte)   + '\n';
   });
+
+  /* Dirección a nivel de reserva (compartida por todos los huéspedes) */
+  const dirReserva =
+    [clean(reserva.viaTipo), clean(reserva.viaNombre), clean(reserva.viaNumero)]
+      .filter(function(x) { return x; }).join(' ') +
+    (clean(reserva.codigoPostal) ? ', ' + clean(reserva.codigoPostal) : '') +
+    (clean(reserva.poblacion)    ? ' ' + clean(reserva.poblacion)     : '') +
+    (clean(reserva.ciudad)       ? ', ' + clean(reserva.ciudad)       : '') +
+    (clean(reserva.pais)         ? ' (' + clean(reserva.pais) + ')'   : '');
 
   const cuerpo =
     '════════════════════════════════\n' +
@@ -504,8 +534,9 @@ function enviarNotificacion(reservaId, codigoCaja, reserva, huespedes) {
     '  Entrada : ' + clean(reserva.fechaEntrada) + '\n' +
     '  Salida  : ' + clean(reserva.fechaSalida)  + '\n\n' +
     'CONTACTO:\n' +
-    '  Teléfono: ' + clean(reserva.telefono) + '\n' +
-    '  Email   : ' + clean(reserva.email)    + '\n\n' +
+    '  Teléfono : ' + clean(reserva.telefono) + '\n' +
+    '  Email    : ' + clean(reserva.email)    + '\n' +
+    '  Dirección: ' + dirReserva              + '\n\n' +
     'HUÉSPEDES (datos SES):' + detalleHuespedes + '\n' +
     '────────────────────────────────\n' +
     'Se adjunta el fichero XML listo para subir a SES.HOSPEDAJES.\n' +
@@ -1356,6 +1387,13 @@ function testXML() {
     telefono:     '+34611164242',
     email:        EMAIL_NOTIFICACION.split(',')[0],
     idioma:       'es',
+    viaTipo:      'Calle',
+    viaNombre:    'Mayor',
+    viaNumero:    '10',
+    codigoPostal: '28001',
+    poblacion:    'Madrid',
+    ciudad:       'Madrid',
+    pais:         'España',
   };
   const huespedesFicti = [{
     nombre:          'Juan',
@@ -1368,9 +1406,6 @@ function testXML() {
     numeroDocumento: '12345678A',
     fechaExpedicion: '2020-01-15',
     numeroSoporte:   'AAA123456',
-    domicilio:       'Calle Mayor 10, 3ºB',
-    codigoPostal:    '28001',
-    paisResidencia:  'España',
   }];
 
   const xml = generarXMLSES('R9999', reservaFicti, huespedesFicti);

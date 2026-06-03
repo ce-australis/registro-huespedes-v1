@@ -5,176 +5,422 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>Registro de Huéspedes · Ático Marbella Centro</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Questrial&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.typekit.net/hzo3vlq.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
+      --fondo:        #F5F3EE;
+      --superficie:   #E8E5DC;
+      --borde:        #D3D1C7;
+      --grafito:      #1C1C1A;
+      --texto:        #444441;
+      --muted:        #888780;
+      --mauve:        #B09AA8;
+      --acento-osc:   #8A7182;
+      --valor:        #6B5E66;
+      --acento-suave: #E4D9E1;
+      --error:        #9B4A4A;
+      --f-marca:      "inge-variable", "Times New Roman", serif;
+      --f-display:    "mozaic-geo-variable", "Arial Narrow", sans-serif;
+      --f-ui:         "rosalind", -apple-system, "Helvetica Neue", system-ui, sans-serif;
+    }
 
-  --azul: #012030;
-  --azul-light: #EEF2F7;
-
-  --terracota: #C4724A;
-  --terracota-dark: #A85A35;
-
-  --sand: #f2f2f2;
-  --blanco: #ffffff;
-
-  --texto: #444444;
-  --gris: #6B6B6B;
-
-  --borde: #e8e8e8;
-
-  --error: #C0392B;
-
-}
     html { scroll-behavior: smooth; }
-    body { font-family: 'Questrial', sans-serif; background: var(--sand); color: var(--texto); min-height: 100vh; font-weight: 300; }
+    body {
+      font-family: var(--f-display);
+      font-weight: 500;
+      font-variation-settings: "wght" 500;
+      background: var(--fondo);
+      color: var(--texto);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
 
-    .lang-bar { background: var(--azul); display: flex; justify-content: flex-end; align-items: center; gap: .5rem; padding: .5rem 1.5rem; }
-    .lang-btn { background: none; border: 2px solid transparent; border-radius: 8px; cursor: pointer; font-size: 1.5rem; padding: .15rem .4rem; line-height: 1; opacity: .45; transition: opacity .2s, border-color .2s, transform .15s; }
-    .lang-btn:hover { opacity: .85; transform: scale(1.1); }
-    .lang-btn.activo { border-color: rgba(255,255,255,.55); opacity: 1; }
+    /* Cursor en punto */
+    html, body, button, select, label, a, .caja-foto, .lang-btn {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Ccircle cx='8' cy='8' r='4.5' fill='%23888780'/%3E%3C/svg%3E") 8 8, auto;
+    }
+    header, header * {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Ccircle cx='8' cy='8' r='4.5' fill='%23F5F3EE'/%3E%3C/svg%3E") 8 8, auto;
+    }
+    .campo input[type="text"], .campo input[type="email"], .campo input[type="tel"],
+    .campo input[type="date"] { cursor: text; }
 
-    header { background: var(--azul); color: white; padding: 2.5rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+    /* ── HEADER ── */
+    header {
+      background: var(--grafito);
+      color: var(--fondo);
+      padding: 3.4rem 2rem 3.6rem;
+      text-align: center;
+      position: relative;
+    }
+    .lang-bar {
+      position: absolute;
+      top: 1.5rem; right: 1.75rem;
+      display: flex; align-items: center; gap: .2rem;
+      z-index: 2;
+    }
+    .lang-btn {
+      background: none; border: none;
+      font-family: var(--f-display);
+      font-weight: 600; font-variation-settings: "wght" 600;
+      font-size: .92rem; letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(245,243,238,.4);
+      padding: .25rem .35rem; line-height: 1;
+      transition: color .2s;
+    }
+    .lang-btn:hover { color: rgba(245,243,238,.75); }
+    .lang-btn.activo { color: var(--fondo); }
+    .lang-sep { color: rgba(245,243,238,.25); font-size: .8rem; }
 
-header h1 {
-  font-family: 'Rozha One', serif;
-  font-size: clamp(1.65rem,4vw,2.5rem);
-  font-weight: 400;
-  letter-spacing: .03em;
-  line-height: 1.25;
-  margin-bottom: .5rem;
-  position: relative;
-  z-index: 1;
-}
-    header p  { font-size: .82rem; opacity: .65; letter-spacing: .1em; text-transform: uppercase; position: relative; z-index: 1; }
+    .marca {
+      font-family: var(--f-ui);
+      font-weight: 400;
+      font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+      letter-spacing: .03em;
+      color: var(--acento-suave);
+      line-height: 1.2;
+      margin-bottom: .55rem;
+    }
+    header h1 {
+      font-family: var(--f-marca);
+      font-weight: 400;
+      font-size: clamp(2.8rem, 7.5vw, 4.6rem);
+      line-height: .95;
+      text-transform: lowercase;
+      letter-spacing: .01em;
+      color: var(--fondo);
+    }
+    .direccion {
+      margin-top: 1.1rem;
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(245,243,238,.5);
+    }
 
-    main { max-width: 700px; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+    /* ── LAYOUT ── */
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 3.5rem 2rem 6rem;
+    }
+    @media (max-width: 600px) { main { padding: 2.5rem 1.25rem 4rem; } }
 
-    .aviso-legal { background: var(--azul-light); border-left: 3px solid var(--azul); padding: 1.2rem 1.4rem; border-radius: 0 8px 8px 0; font-size: .875rem; line-height: 1.75; color: var(--azul); margin-bottom: 2rem; }
-    .aviso-legal strong { font-weight: 500; }
+    /* ── AVISO LEGAL ── */
+    .aviso-legal {
+      background: var(--acento-suave);
+      border-left: 3px solid var(--acento-osc);
+      padding: 1rem 1.25rem 1rem 1.5rem;
+      font-size: .82rem;
+      line-height: 1.75;
+      color: var(--texto);
+      margin-bottom: 3.5rem;
+      letter-spacing: .01em;
+    }
+    .aviso-legal strong {
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      font-size: .72rem;
+      display: block;
+      margin-bottom: .4rem;
+    }
 
-    /* ── SECCIÓN genérica ── */
-    .seccion { background: var(--blanco); border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; border: 1px solid var(--borde); box-shadow: 0 2px 14px rgba(0,0,0,.04); }
-    .seccion-titulo { font-family: 'Questrial', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--azul); margin-bottom: 1.5rem; padding-bottom: .75rem; border-bottom: 1px solid var(--borde); display: flex; align-items: center; gap: .5rem; }
+    /* ── SECCIONES ── */
+    .seccion { margin-bottom: 3.6rem; }
+    .seccion-titulo {
+      font-family: var(--f-display);
+      font-weight: 600; font-variation-settings: "wght" 600;
+      font-size: clamp(1.9rem, 4.4vw, 3rem);
+      letter-spacing: .015em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+      line-height: .95;
+    }
 
-    /* ── BLOQUE HUÉSPED ── */
-    .bloque-huesped { position: relative; }
-    .bloque-huesped-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: .75rem; border-bottom: 1px solid var(--borde); }
-    .bloque-huesped-header .seccion-titulo { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-    .btn-eliminar-huesped { background: none; border: 1.5px solid var(--error); color: var(--error); border-radius: 8px; padding: .3rem .8rem; font-family: 'Questrial', sans-serif; font-size: .8rem; cursor: pointer; transition: background .2s, color .2s; white-space: nowrap; }
-    .btn-eliminar-huesped:hover { background: var(--error); color: white; }
-
-    /* ── Subtítulo interno del bloque (personal / documento) ── */
-    .campo-seccion-sub { font-size: .82rem; font-weight: 600; color: var(--azul); text-transform: uppercase; letter-spacing: .07em; margin: 1.6rem 0 1rem; padding-bottom: .45rem; border-bottom: 1px dashed var(--borde); display: flex; align-items: center; gap: .35rem; }
-
-    /* ── BOTÓN AÑADIR HUÉSPED ── */
-    .btn-anadir-huesped { display: flex; align-items: center; justify-content: center; gap: .5rem; width: 100%; padding: .9rem; background: var(--azul-light); color: var(--azul); border: 2px dashed var(--azul); border-radius: 10px; font-family: 'Questrial', sans-serif; font-size: .95rem; font-weight: 600; cursor: pointer; transition: background .2s, border-color .2s, color .2s; margin-bottom: 1.5rem; letter-spacing: .03em; }
-    .btn-anadir-huesped:hover { background: var(--azul); color: white; border-color: var(--azul); }
+    /* ── GRIDS ── */
+    .fila { display: grid; gap: 1.1rem; margin-bottom: 1.1rem; }
+    .fila:last-child { margin-bottom: 0; }
+    .cols-2     { grid-template-columns: 1fr 1fr; }
+    .cols-3     { grid-template-columns: 1fr 1fr 1fr; }
+    .cols-2-1-1 { grid-template-columns: 2fr 1fr 1fr; }
+    @media (max-width: 760px) {
+      .cols-2, .cols-3, .cols-2-1-1 { grid-template-columns: 1fr; }
+    }
 
     /* ── CAMPOS ── */
-    .campo { margin-bottom: 1.4rem; }
-    .campo:last-child { margin-bottom: 0; }
-    .campo > label { display: block; font-size: .8rem; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; color: var(--gris); margin-bottom: .45rem; }
-    .req { color: var(--terracota); margin-left: 2px; }
+    .campo {
+      background: var(--acento-suave);
+      padding: .9rem 1.15rem 1rem;
+      transition: box-shadow .18s ease;
+    }
+    .campo:focus-within { box-shadow: inset 0 -2px 0 0 var(--acento-osc); }
+    .campo:has(input.invalido), .campo:has(select.invalido) {
+      box-shadow: inset 0 -2px 0 0 var(--error);
+    }
+    .campo > label {
+      display: block;
+      font-family: var(--f-display);
+      font-size: .82rem; font-weight: 600; font-variation-settings: "wght" 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: .3rem;
+    }
+    .req { color: var(--acento-osc); margin-left: 1px; }
+
     .campo input, .campo select {
-      width: 100%; padding: .85rem 1rem; border: 1.5px solid var(--borde); border-radius: 8px;
-      font-family: 'Questrial', sans-serif; font-size: 16px; color: var(--texto);
-      background: var(--blanco); transition: border-color .2s, box-shadow .2s; appearance: none; -webkit-appearance: none;
+      width: 100%; border: none; background: transparent;
+      font-family: var(--f-display);
+      font-weight: 500; font-variation-settings: "wght" 500;
+      font-size: 1.45rem; line-height: 1.25;
+      color: var(--valor); padding: 0;
+      appearance: none; -webkit-appearance: none;
+    }
+    .campo input:focus, .campo select:focus { outline: none; }
+    .campo input::placeholder { color: var(--muted); opacity: .65; }
+    .campo input.invalido, .campo select.invalido { color: var(--error); }
+    .campo input:-webkit-autofill,
+    .campo input:-webkit-autofill:hover,
+    .campo input:-webkit-autofill:focus {
+      -webkit-text-fill-color: var(--valor);
+      -webkit-box-shadow: 0 0 0 1000px var(--acento-suave) inset;
+      caret-color: var(--valor);
     }
     .campo select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B6B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; cursor: pointer;
+      padding-right: 1.6rem;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A7182' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right .1rem center;
     }
-    .campo input:focus, .campo select:focus { outline: none; border-color: var(--azul); box-shadow: 0 0 0 3px rgba(36,62,86,.08); }
-    .campo input::placeholder { color: #C0BAB0; }
-    .campo input.invalido, .campo select.invalido { border-color: var(--error) !important; }
-    .mensaje-error { font-size: .78rem; color: var(--error); margin-top: .35rem; display: none; }
-    .campo input.invalido ~ .mensaje-error, .campo select.invalido ~ .mensaje-error { display: block; }
+    .campo select option { color: var(--grafito); background: var(--fondo); }
+    .campo input[type="date"] { color: var(--valor); }
+    .campo input[type="date"]::-webkit-calendar-picker-indicator { opacity: .45; filter: saturate(0); }
 
-    .campo-fila   { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .campo-fila-3 { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem; }
-    @media (max-width: 520px) { .campo-fila, .campo-fila-3 { grid-template-columns: 1fr; } }
+    .mensaje-error {
+      font-family: var(--f-display); font-weight: 500; font-variation-settings: "wght" 500;
+      font-size: .8rem; color: var(--error);
+      margin-top: .5rem; letter-spacing: .03em; display: none;
+    }
+    .campo input.invalido ~ .mensaje-error,
+    .campo select.invalido ~ .mensaje-error { display: block; }
 
-    .nota { font-size: .8rem; color: var(--gris); margin-top: .4rem; line-height: 1.5; }
-    .nota-email { background: var(--azul-light); border-left: 3px solid var(--azul); padding: .6rem .9rem; border-radius: 0 6px 6px 0; font-size: .82rem; color: var(--azul); line-height: 1.6; margin-top: .5rem; }
+    .nota {
+      font-family: var(--f-display); font-weight: 500; font-variation-settings: "wght" 500;
+      font-size: .82rem; color: var(--muted);
+      margin-top: .5rem; line-height: 1.5; letter-spacing: .01em;
+    }
+
+    /* ── MULTI-HUÉSPED ── */
+    .bloque-huesped { margin-bottom: 4rem; }
+    .bloque-huesped + .bloque-huesped {
+      padding-top: 4rem;
+      border-top: 1px solid var(--borde);
+    }
+    .bloque-huesped-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 1.75rem;
+    }
+    .bloque-huesped-header .seccion-titulo { margin-bottom: 0; }
+
+    .campo-seccion-sub {
+      font-family: var(--f-display);
+      font-weight: 600; font-variation-settings: "wght" 600;
+      font-size: .75rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--muted); margin: 2rem 0 1.1rem;
+    }
+
+    .btn-eliminar-huesped {
+      background: none; border: 1px solid var(--error);
+      color: var(--error);
+      font-family: var(--f-display); font-weight: 500; font-variation-settings: "wght" 500;
+      font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+      padding: .4rem .9rem;
+      transition: background .2s, color .2s;
+      white-space: nowrap; margin-top: .5rem;
+    }
+    .btn-eliminar-huesped:hover { background: var(--error); color: var(--fondo); }
+
+    .btn-anadir-huesped {
+      display: flex; align-items: center; justify-content: center; gap: .6rem;
+      width: 100%; padding: 1rem;
+      background: transparent; color: var(--muted);
+      border: 1.5px dashed var(--borde);
+      font-family: var(--f-display);
+      font-weight: 600; font-variation-settings: "wght" 600;
+      font-size: .88rem; letter-spacing: .1em; text-transform: uppercase;
+      transition: border-color .2s, color .2s;
+      margin-bottom: 4rem;
+    }
+    .btn-anadir-huesped:hover { border-color: var(--acento-osc); color: var(--acento-osc); }
 
     /* ── FOTOS ── */
-    .fotos-wrap { margin-top: 1.6rem; padding-top: 1.4rem; border-top: 1px solid var(--borde); }
-    .fotos-label { font-size: .8rem; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; color: var(--gris); margin-bottom: .5rem; display: block; }
-    .fotos-opcional { font-size: .8rem; color: var(--gris); font-style: italic; margin-bottom: .85rem; line-height: 1.5; }
-    .caras-documento { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .fotos-wrap { margin-top: 2rem; }
+    .fotos-label {
+      font-family: var(--f-display); font-size: .82rem; font-weight: 600;
+      font-variation-settings: "wght" 600; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: .45rem; display: block;
+    }
+    .fotos-opcional {
+      font-family: var(--f-display); font-size: .92rem; font-weight: 500;
+      font-variation-settings: "wght" 500; color: var(--muted);
+      margin-bottom: 1rem; line-height: 1.5; letter-spacing: .01em;
+    }
+    .caras-documento { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
     @media (max-width: 480px) { .caras-documento { grid-template-columns: 1fr; } }
-    .caja-foto { border: 2px dashed var(--borde); border-radius: 10px; padding: 1.3rem 1rem; text-align: center; background: var(--sand); transition: border-color .2s, background .2s; }
-    .caja-foto:hover { border-color: var(--azul); background: var(--azul-light); }
-    .caja-foto.tiene-imagen { border-color: var(--azul); border-style: solid; background: var(--azul-light); }
+    .caja-foto {
+      border: 1.5px dashed var(--borde); padding: 1.5rem 1rem;
+      text-align: center; background: var(--superficie);
+      transition: border-color .2s, background .2s;
+    }
+    .caja-foto:hover { border-color: var(--acento-osc); background: var(--acento-suave); }
+    .caja-foto.tiene-imagen { border-color: var(--acento-osc); border-style: solid; background: var(--acento-suave); }
     .caja-foto input[type="file"] { display: none; }
-    .caja-foto label { cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: .35rem; }
-    .icono-foto { font-size: 1.8rem; }
-    .cara-titulo { font-weight: 500; font-size: .9rem; color: var(--texto); }
-    .cara-sub { font-size: .76rem; color: var(--gris); }
-    .btn-elegir { display: inline-block; margin-top: .4rem; padding: .35rem .9rem; background: var(--azul); color: white; border-radius: 6px; font-size: .78rem; font-weight: 500; letter-spacing: .04em; transition: background .2s; }
-    .caja-foto label:hover .btn-elegir { background: var(--terracota); }
-    .nombre-archivo { margin-top: .5rem; font-size: .78rem; color: var(--azul); font-weight: 500; word-break: break-all; display: none; }
-    .preview-img { display: none; width: 100%; max-height: 90px; object-fit: cover; border-radius: 6px; margin-top: .5rem; }
+    .caja-foto label { display: flex; flex-direction: column; align-items: center; gap: .45rem; }
+    .icono-foto {
+      display: block; width: 34px; height: 34px;
+      background: url("assets/camara-muted.png") no-repeat center / contain;
+    }
+    .caja-foto:hover .icono-foto,
+    .caja-foto.tiene-imagen .icono-foto { background-image: url("assets/camara-acento.png"); }
+    .cara-titulo {
+      font-family: var(--f-display); font-weight: 600; font-variation-settings: "wght" 600;
+      font-size: 1.05rem; color: var(--grafito); letter-spacing: .03em; text-transform: uppercase;
+    }
+    .cara-sub { font-size: .72rem; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+    .btn-elegir {
+      display: inline-block; margin-top: .35rem; padding: .4rem 1rem;
+      background: var(--grafito); color: var(--fondo);
+      font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+      transition: background .2s;
+    }
+    .caja-foto label:hover .btn-elegir { background: var(--acento-osc); }
+    .nombre-archivo {
+      margin-top: .55rem; font-size: .74rem; color: var(--acento-osc);
+      word-break: break-all; display: none; letter-spacing: .02em;
+    }
+    .preview-img { display: none; width: 100%; max-height: 100px; object-fit: cover; margin-top: .6rem; }
 
-    /* ── PROGRESO ENVÍO ── */
-    .barra-progreso-wrap { display: none; margin-top: .75rem; }
-    .barra-progreso-label { font-size: .8rem; color: var(--gris); margin-bottom: .3rem; }
-    .barra-progreso { height: 6px; background: var(--borde); border-radius: 10px; overflow: hidden; }
-    .barra-progreso-inner { height: 100%; width: 0%; background: var(--azul); border-radius: 10px; transition: width .3s; }
+    /* ── PROGRESO ── */
+    .barra-progreso-wrap { display: none; margin-top: 1.25rem; }
+    .barra-progreso-label { font-size: .78rem; color: var(--muted); margin-bottom: .4rem; letter-spacing: .03em; }
+    .barra-progreso { height: 4px; background: var(--borde); overflow: hidden; }
+    .barra-progreso-inner { height: 100%; width: 0%; background: var(--acento-osc); transition: width .3s; }
 
     /* ── CONSENTIMIENTOS ── */
-    .consentimiento { display: flex; gap: .9rem; align-items: flex-start; margin-bottom: 1.1rem; }
-    .consentimiento input[type="checkbox"] { width: 20px; height: 20px; min-width: 20px; margin-top: 3px; accent-color: var(--azul); cursor: pointer; }
-    .consentimiento > label { font-size: .88rem; line-height: 1.65; color: var(--texto); cursor: pointer; }
-    .consentimiento > label a { color: var(--azul); text-decoration: underline; text-underline-offset: 2px; }
+    .consentimiento { display: flex; gap: .9rem; align-items: flex-start; margin-bottom: 1.2rem; }
+    .consentimiento input[type="checkbox"] {
+      width: 19px; height: 19px; min-width: 19px; margin-top: 3px;
+      accent-color: var(--acento-osc);
+    }
+    .consentimiento > label { font-size: .85rem; line-height: 1.7; color: var(--texto); letter-spacing: .01em; }
+    .consentimiento > label a { color: var(--acento-osc); text-decoration: underline; text-underline-offset: 2px; }
     .consentimiento.invalido > label { color: var(--error); }
 
     .campo-honeypot { display: none !important; visibility: hidden; position: absolute; }
 
-    .btn-enviar { width: 100%; padding: 1.1rem; background: var(--terracota); color: white; border: none; border-radius: 10px; font-family: 'Questrial', sans-serif; font-size: 1rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: background .2s, transform .12s, opacity .2s; margin-top: .75rem; }
-    .btn-enviar:hover:not(:disabled) { background: var(--terracota-dark); transform: translateY(-1px); }
-    .btn-enviar:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    /* ── BTN ENVIAR ── */
+    .btn-enviar {
+      width: 100%; padding: 1.15rem;
+      background: var(--mauve); color: var(--fondo);
+      border: none;
+      font-family: var(--f-display);
+      font-weight: 600; font-variation-settings: "wght" 600;
+      font-size: 1.15rem; letter-spacing: .12em; text-transform: uppercase;
+      transition: background .2s, transform .12s, opacity .2s;
+      margin-top: 1rem;
+    }
+    .btn-enviar:hover:not(:disabled) { background: var(--acento-osc); }
+    .btn-enviar:active:not(:disabled) { transform: translateY(1px); }
+    .btn-enviar:disabled { opacity: .55; cursor: not-allowed; }
 
-    .error-envio { display: none; background: #FFF0EE; border: 1px solid #F5C6BE; border-radius: 8px; padding: 1rem 1.2rem; color: var(--error); font-size: .9rem; line-height: 1.6; margin-top: 1rem; }
-    .error-envio a { color: var(--terracota-dark); font-weight: 500; }
+    .error-envio {
+      display: none;
+      background: #F6EBE9; border: 1px solid #E3C4BE;
+      padding: 1rem 1.25rem;
+      color: var(--error); font-size: .85rem; line-height: 1.65;
+      margin-top: 1.25rem; letter-spacing: .01em;
+    }
+    .error-envio strong { font-weight: 400; text-transform: uppercase; letter-spacing: .05em; font-size: .78rem; }
+    .error-envio a { color: var(--acento-osc); }
 
     /* ── CONFIRMACIÓN ── */
-    .confirmacion { display: none; background: var(--blanco); border-radius: 12px; padding: 3.5rem 2rem; text-align: center; border: 1px solid var(--borde); margin-bottom: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,.06); }
-    .confirmacion .check { font-size: 3.5rem; margin-bottom: 1rem; display: block; }
-    .confirmacion h2 { font-family: 'Questrial', sans-serif; font-size: 2rem; font-weight: 400; color: var(--azul); margin-bottom: .75rem; }
-    .confirmacion p { color: var(--gris); font-size: .95rem; line-height: 1.75; max-width: 460px; margin: 0 auto; }
+    .confirmacion { display: none; text-align: center; padding: 4rem 2rem; margin-bottom: 2rem; }
+    .confirmacion .check {
+      width: 64px; height: 64px; border-radius: 50%;
+      border: 1.5px solid var(--acento-osc);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.75rem;
+    }
+    .confirmacion .check::after {
+      content: ""; width: 20px; height: 11px;
+      border-left: 2px solid var(--acento-osc);
+      border-bottom: 2px solid var(--acento-osc);
+      transform: rotate(-45deg); margin-top: -5px;
+    }
+    .confirmacion h2 {
+      font-family: var(--f-marca); font-weight: 400;
+      font-size: clamp(2.3rem, 5.5vw, 3.4rem);
+      text-transform: lowercase; letter-spacing: .01em;
+      color: var(--grafito); margin-bottom: 1rem; line-height: .95;
+    }
+    .confirmacion p { color: var(--texto); font-size: .92rem; line-height: 1.75; max-width: 460px; margin: 0 auto; letter-spacing: .01em; }
     .confirmacion p + p { margin-top: .75rem; }
-    .reserva-badge { display: inline-flex; flex-direction: column; gap: .25rem; margin: 1.25rem auto .75rem; background: var(--azul-light); border: 1.5px solid var(--azul); border-radius: 10px; padding: 1rem 2rem; }
-    .reserva-badge .badge-row { display: flex; align-items: center; gap: .6rem; font-size: .9rem; }
-    .reserva-badge .badge-label { color: var(--gris); font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; }
-    .reserva-badge .badge-val { color: var(--azul); font-weight: 700; font-size: 1.15rem; letter-spacing: .05em; }
-    .confirmacion .tel-confirmacion { display: inline-block; margin-top: 1.25rem; color: var(--azul); font-weight: 500; }
+    .confirmacion .tel-confirmacion {
+      display: inline-block; margin-top: 1.5rem;
+      color: var(--acento-osc); letter-spacing: .06em; font-size: .9rem;
+      text-decoration: none; border-bottom: 1px solid var(--acento-suave); padding-bottom: 2px;
+    }
 
-    footer { text-align: center; padding: 2rem 1rem; font-size: .78rem; color: var(--gris); border-top: 1px solid var(--borde); margin-top: 1rem; }
-    footer a { color: var(--azul); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+    .reserva-badge {
+      display: inline-flex; flex-direction: column; gap: .4rem;
+      margin: 1.5rem auto .75rem;
+      background: var(--acento-suave); border: 1px solid var(--borde);
+      padding: 1.25rem 2.5rem; text-align: left;
+    }
+    .reserva-badge .badge-row { display: flex; align-items: center; gap: .75rem; }
+    .reserva-badge .badge-label {
+      font-family: var(--f-display); font-size: .72rem; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .reserva-badge .badge-val {
+      font-family: var(--f-display); font-weight: 600; font-variation-settings: "wght" 600;
+      font-size: 1.2rem; letter-spacing: .06em; color: var(--valor);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 2.5rem 1.5rem;
+      font-family: var(--f-display); font-weight: 500; font-variation-settings: "wght" 500;
+      font-size: .82rem; color: var(--muted);
+      border-top: 1px solid var(--borde);
+      letter-spacing: .03em; line-height: 1.9;
+    }
+    footer a { color: var(--acento-osc); text-decoration: none; }
+    footer a:hover { text-decoration: underline; text-underline-offset: 2px; }
   </style>
 </head>
 <body>
 
-  <div class="lang-bar">
-    <button class="lang-btn activo" id="btn-es" onclick="setLang('es')" title="Español" aria-label="Español">🇪🇸</button>
-    <button class="lang-btn"        id="btn-en" onclick="setLang('en')" title="English" aria-label="English">🇬🇧</button>
-  </div>
-
   <header>
+    <div class="lang-bar">
+      <button class="lang-btn activo" id="btn-es" onclick="setLang('es')" title="Español" aria-label="Español">ES</button>
+      <span class="lang-sep" aria-hidden="true">/</span>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')" title="English" aria-label="English">EN</button>
+    </div>
+    <div class="marca">Ático Marbella Centro</div>
     <h1 id="hdr-titulo"></h1>
-    <p>ÁTICO MARBELLA CENTRO · CALLE JACINTO BENAVENTE 8</p>
+    <p class="direccion">Calle Jacinto Benavente 8 · Marbella</p>
   </header>
 
   <main>
     <div class="aviso-legal" id="aviso-legal"></div>
 
-    <!-- CONFIRMACIÓN (oculta hasta el envío exitoso) -->
     <div class="confirmacion" id="confirmacion" role="alert" aria-live="polite">
-      <span class="check" aria-hidden="true">✅</span>
+      <span class="check" aria-hidden="true"></span>
       <h2 id="conf-titulo"></h2>
       <p id="conf-texto1"></p>
       <div class="reserva-badge" id="conf-badge" style="display:none">
@@ -197,19 +443,17 @@ header h1 {
         <input type="text" name="website" id="campo-trampa" tabindex="-1" autocomplete="off">
       </div>
 
-      <!-- ── CONTENEDOR DINÁMICO DE HUÉSPEDES ── -->
       <div id="huespedes-container"></div>
 
-      <!-- Botón Añadir huésped -->
       <button type="button" id="btn-anadir" class="btn-anadir-huesped">
-        <span aria-hidden="true">➕</span>
+        <span aria-hidden="true">+</span>
         <span id="lbl-btn-anadir"></span>
       </button>
 
-      <!-- ── ESTANCIA (nivel reserva) ── -->
+      <!-- ESTANCIA -->
       <div class="seccion">
-        <h2 class="seccion-titulo"><span aria-hidden="true">📅</span> <span id="sec-estancia-titulo"></span></h2>
-        <div class="campo-fila">
+        <h2 class="seccion-titulo" id="sec-estancia-titulo"></h2>
+        <div class="fila cols-2">
           <div class="campo">
             <label for="fecha-entrada" id="lbl-fentrada"></label>
             <input type="date" id="fecha-entrada" name="fechaEntrada" required>
@@ -223,25 +467,85 @@ header h1 {
         </div>
       </div>
 
-      <!-- ── CONTACTO (nivel reserva) ── -->
+      <!-- CONTACTO -->
       <div class="seccion">
-        <h2 class="seccion-titulo"><span aria-hidden="true">📱</span> <span id="sec-contacto-titulo"></span></h2>
-        <div class="campo">
-          <label for="telefono" id="lbl-telefono"></label>
-          <input type="tel" id="telefono" name="telefono" autocomplete="tel" required>
-          <span class="mensaje-error" id="err-telefono"></span>
+        <h2 class="seccion-titulo" id="sec-contacto-titulo"></h2>
+        <div class="fila">
+          <div class="campo">
+            <label for="telefono" id="lbl-telefono"></label>
+            <input type="tel" id="telefono" name="telefono" autocomplete="tel" required>
+            <span class="mensaje-error" id="err-telefono"></span>
+          </div>
         </div>
-        <div class="campo">
-          <label for="email" id="lbl-email"></label>
-          <input type="email" id="email" name="email" autocomplete="email" required>
-          <span class="mensaje-error" id="err-email"></span>
-          <p class="nota-email" id="nota-email"></p>
+        <div class="fila cols-2">
+          <div class="campo">
+            <label for="via-tipo" id="lbl-via-tipo"></label>
+            <select id="via-tipo" name="viaTipo" required>
+              <option value="" id="via-placeholder"></option>
+              <option value="Calle"        id="via-calle"></option>
+              <option value="Avenida"      id="via-avenida"></option>
+              <option value="Plaza"        id="via-plaza"></option>
+              <option value="Paseo"        id="via-paseo"></option>
+              <option value="Camino"       id="via-camino"></option>
+              <option value="Carretera"    id="via-carretera"></option>
+              <option value="Ronda"        id="via-ronda"></option>
+              <option value="Urbanización" id="via-urbanizacion"></option>
+              <option value="Cuesta"       id="via-cuesta"></option>
+              <option value="Travesía"     id="via-travesia"></option>
+              <option value="Callejón"     id="via-callejon"></option>
+              <option value="Bulevar"      id="via-bulevar"></option>
+              <option value="Otro"         id="via-otro"></option>
+            </select>
+            <span class="mensaje-error" id="err-via-tipo"></span>
+          </div>
+          <div class="campo">
+            <label for="via-nombre" id="lbl-via-nombre"></label>
+            <input type="text" id="via-nombre" name="viaNombre" autocomplete="address-line1" required>
+            <span class="mensaje-error" id="err-via-nombre"></span>
+          </div>
+        </div>
+        <div class="fila cols-2-1-1">
+          <div class="campo">
+            <label for="via-numero" id="lbl-via-numero"></label>
+            <input type="text" id="via-numero" name="viaNumero" autocomplete="address-line2" required>
+            <span class="mensaje-error" id="err-via-numero"></span>
+          </div>
+          <div class="campo">
+            <label for="cp" id="lbl-cp"></label>
+            <input type="text" id="cp" name="codigoPostal" autocomplete="postal-code" maxlength="10" required>
+            <span class="mensaje-error" id="err-cp"></span>
+          </div>
+          <div class="campo">
+            <label for="poblacion" id="lbl-poblacion"></label>
+            <input type="text" id="poblacion" name="poblacion" autocomplete="address-level2" required>
+            <span class="mensaje-error" id="err-poblacion"></span>
+          </div>
+        </div>
+        <div class="fila cols-2">
+          <div class="campo">
+            <label for="ciudad" id="lbl-ciudad"></label>
+            <input type="text" id="ciudad" name="ciudad" autocomplete="address-level1" required>
+            <span class="mensaje-error" id="err-ciudad"></span>
+          </div>
+          <div class="campo">
+            <label for="pais" id="lbl-pais"></label>
+            <input type="text" id="pais" name="pais" autocomplete="country-name" required>
+            <span class="mensaje-error" id="err-pais"></span>
+          </div>
+        </div>
+        <div class="fila">
+          <div class="campo">
+            <label for="email" id="lbl-email"></label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+            <span class="mensaje-error" id="err-email"></span>
+            <p class="nota" id="nota-email"></p>
+          </div>
         </div>
       </div>
 
-      <!-- ── CONSENTIMIENTOS ── -->
+      <!-- CONSENTIMIENTOS -->
       <div class="seccion">
-        <h2 class="seccion-titulo"><span aria-hidden="true">📋</span> <span id="sec5-titulo"></span></h2>
+        <h2 class="seccion-titulo" id="sec5-titulo"></h2>
         <div class="consentimiento" id="wrap-check-privacidad">
           <input type="checkbox" id="acepta-privacidad" name="aceptaPrivacidad" required>
           <label for="acepta-privacidad" id="lbl-check-privacidad"></label>
@@ -279,131 +583,134 @@ header h1 {
   </footer>
 
   <script>
-  /* ══════════════════════════════════════════════════
-     CONFIG — V02
-  ══════════════════════════════════════════════════ */
+  /* ── CONFIG ── */
   const WORKER_DEV_URL = 'https://worker-registro-prod.ce-australis.workers.dev';
   const API_TOKEN      = 'AtMb2025!xK9#qR7vL';
-  const MAX_IMG_BYTES  = 4 * 1024 * 1024; // 4 MB
+  const MAX_IMG_BYTES  = 4 * 1024 * 1024;
 
-  /* ══════════════════════════════════════════════════
-     TRADUCCIONES
-  ══════════════════════════════════════════════════ */
+  /* ── TRADUCCIONES ── */
   const T = {
     es: {
-      hdrTitulo: 'Registro de Huéspedes',
-      avisoLegal: '<strong>Aviso legal obligatorio:</strong> En cumplimiento del Real Decreto 933/2021, todos los viajeros mayores de edad deben cumplimentar este formulario antes de la entrada. Los datos serán comunicados a las autoridades competentes en el plazo legalmente establecido.',
-      secEstancia: 'Fechas de Estancia', secContacto: 'Datos de Contacto', sec5: 'Consentimientos y Envío',
-      huesped: 'Huésped', guest: 'Huésped',
-      secPersonal: '👤 Datos personales', secDoc: '📄 Documento de identidad',
-      secDomicilio: '🏠 Domicilio habitual',
-      btnAnadir: 'Añadir otro huésped',
-      btnEliminar: 'Eliminar',
-      lblNombre: 'Nombre *', lblApellido1: 'Primer apellido *', lblApellido2: 'Segundo apellido',
-      lblFnac: 'Fecha de nacimiento *', lblSexo: 'Sexo *',
+      hdrTitulo:    'Registro de Huéspedes',
+      avisoLegal:   '<strong>Aviso legal obligatorio</strong> En cumplimiento del Real Decreto 933/2021, todos los viajeros mayores de edad deben cumplimentar este formulario antes de la entrada. Los datos serán comunicados a las autoridades competentes en el plazo legalmente establecido.',
+      secEstancia:  'Fechas de Estancia',
+      secContacto:  'Datos de Contacto',
+      sec5:         'Consentimientos',
+      huesped:      'Huésped',
+      secPersonal:  'Datos personales',
+      secDoc:       'Documento de identidad',
+      btnAnadir:    'Añadir otro huésped',
+      btnEliminar:  'Eliminar',
+      lblNombre:    'Nombre *', lblApellido1: 'Primer apellido *', lblApellido2: 'Segundo apellido',
+      lblFnac:      'Fecha de nacimiento *', lblSexo: 'Sexo *',
       sexoPlaceholder: '— Selecciona —', sexoM: 'Hombre', sexoF: 'Mujer', sexoX: 'No especificado',
       lblNacionalidad: 'Nacionalidad *',
-      lblTipodoc: 'Tipo de documento *', tipodocPlaceholder: '— Selecciona —',
+      lblTipodoc:   'Tipo de documento *', tipodocPlaceholder: '— Selecciona —',
       tipodocPasaporte: 'Pasaporte', tipodocTarjeta: 'Tarjeta de Residencia', tipodocOtro: 'Otro',
-      lblNumdoc: 'Número de documento *', lblFexpedicion: 'Fecha de expedición *',
-      lblSoporte: 'Número de soporte (DNI)', notaSoporte: 'Número en el reverso del DNI (ej. AAA000000).',
-      lblDomicilio: 'Calle y número *',
-      lblCp: 'Código postal *',
-      lblPaisRes: 'País de residencia *',
-      notaDomicilio: 'Domicilio habitual del huésped — requerido por el Ministerio del Interior (RD 933/2021).',
-      fotosTitulo: 'Fotografías del documento (opcional)',
-      fotosOpcional: 'Adjunte una foto del anverso y, si puede, del reverso. Solo se aceptan imágenes JPG o PNG (máx. 4 MB). Si prefiere no adjuntarlas, puede enviárnoslas por WhatsApp al +34 611 164 242.',
+      lblNumdoc:    'Número de documento *', lblFexpedicion: 'Fecha de expedición *',
+      lblSoporte:   'Número de soporte (DNI)',
+      notaSoporte:  'Número en el reverso del DNI (ej. AAA000000).',
+      fotosTitulo:  'Fotografías del documento (opcional)',
+      fotosOpcional:'Adjunte una foto del anverso y, si puede, del reverso. Solo se aceptan imágenes JPG o PNG (máx. 4 MB). Si prefiere no adjuntarlas, puede enviárnoslas por WhatsApp al +34 611 164 242.',
       fotoFrontalTitulo: 'Cara frontal', fotoFrontalSub: 'Anverso · JPG / PNG', fotoFrontalBtn: 'Elegir imagen',
       fotoTraseroTitulo: 'Cara trasera',  fotoTraseroSub: 'Reverso · JPG / PNG',  fotoTraseroBtn: 'Elegir imagen',
-      errFotoTamano: 'La imagen supera el límite de 4 MB.',
-      lblFentrada: 'Fecha de entrada *', lblFsalida: 'Fecha de salida *',
-      lblTelefono: 'Teléfono *',
-      lblEmail: 'Correo electrónico *',
-      notaEmail: 'Utilizaremos este email para enviarte las instrucciones de entrada al apartamento.',
-      checkPrivacidad: 'He leído y acepto la <a id="link-privacidad-es" href="#">Política de Privacidad</a>. <span class="req">*</span>',
+      errFotoTamano:'La imagen supera el límite de 4 MB.',
+      lblFentrada:  'Fecha de entrada *', lblFsalida: 'Fecha de salida *',
+      lblTelefono:  'Teléfono *',
+      lblViaTipo:   'Tipo de vía *', viaPlaceholder: '— Tipo —',
+      viaCalle: 'Calle', viaAvenida: 'Avenida', viaPlaza: 'Plaza', viaPaseo: 'Paseo', viaCamino: 'Camino',
+      viaCarretera: 'Carretera', viaRonda: 'Ronda', viaUrbanizacion: 'Urbanización',
+      viaCuesta: 'Cuesta', viaTravesia: 'Travesía', viaCallejon: 'Callejón', viaBulevar: 'Bulevar', viaOtro: 'Otro',
+      lblViaNombre: 'Nombre de vía *', lblViaNumero: 'Número *',
+      lblCp:        'Código postal *', lblPoblacion: 'Población *',
+      lblCiudad:    'Ciudad / Provincia *', lblPais: 'País *',
+      lblEmail:     'Correo electrónico *',
+      notaEmail:    'Utilizaremos este email para enviarte las instrucciones de entrada al apartamento.',
+      checkPrivacidad:  'He leído y acepto la <a id="link-privacidad-es" href="#">Política de Privacidad</a>. <span class="req">*</span>',
       checkAutoridades: 'Declaro conocer que, conforme al RD 933/2021, los datos facilitados serán comunicados a las autoridades competentes en el plazo de 24 horas. <span class="req">*</span>',
-      btnEnviar: 'Enviar registro',
-      progresoTexto: 'Subiendo datos y fotos, un momento…',
+      btnEnviar:    'Enviar registro',
+      progresoTexto:'Subiendo datos y fotos, un momento…',
       errRequerido: 'Este campo es obligatorio.', errFecha: 'Introduce una fecha válida.',
-      errSalida: 'La fecha de salida debe ser posterior a la de entrada.', errEmail: 'Introduce un correo válido.',
+      errSalida:    'La fecha de salida debe ser posterior a la de entrada.',
+      errEmail:     'Introduce un correo válido.',
       errEnvioTitulo: 'No se pudo enviar el formulario.',
-      errEnvioTexto: 'Inténtelo de nuevo o contáctenos por <a href="https://wa.me/34611164242" target="_blank" rel="noopener">WhatsApp</a> al +34 611 164 242.',
-      confTitulo: '¡Registro completado!',
-      confTexto1: 'Hemos recibido los datos de todos los huéspedes. En breve recibirá por email las instrucciones de entrada.',
+      errEnvioTexto:  'Inténtelo de nuevo o contáctenos por <a href="https://wa.me/34611164242" target="_blank" rel="noopener">WhatsApp</a> al +34 611 164 242.',
+      confTitulo:   '¡registro completado!',
+      confTexto1:   'Hemos recibido los datos de todos los huéspedes. En breve recibirá por email las instrucciones de entrada.',
       confLblReserva: 'Nº Reserva', confLblCaja: 'Código Caja',
-      confTexto2: 'Ante cualquier duda, estamos a su disposición:',
-      footerTxt: '© Ático Marbella Centro · Calle Jacinto Benavente 8, Edificio Marbelsun III, Marbella',
+      confTexto2:   'Ante cualquier duda, estamos a su disposición:',
+      footerTxt:    '© Ático Marbella Centro · Calle Jacinto Benavente 8, Edificio Marbelsun III, Marbella',
       footerPrivacidad: 'Política de Privacidad',
     },
     en: {
-      hdrTitulo: 'Guest Registration',
-      avisoLegal: '<strong>Legal notice:</strong> In compliance with Royal Decree 933/2021, all adult guests must complete this form before check-in. Your data will be reported to the competent authorities within the legally established period.',
-      secEstancia: 'Stay Dates', secContacto: 'Contact Details', sec5: 'Consent & Submit',
-      huesped: 'Guest', guest: 'Guest',
-      secPersonal: '👤 Personal details', secDoc: '📄 Identity document',
-      secDomicilio: '🏠 Home address',
-      btnAnadir: 'Add another guest',
-      btnEliminar: 'Remove',
-      lblNombre: 'First name *', lblApellido1: 'First surname *', lblApellido2: 'Second surname',
-      lblFnac: 'Date of birth *', lblSexo: 'Sex *',
+      hdrTitulo:    'Guest Registration',
+      avisoLegal:   '<strong>Legal notice</strong> In compliance with Royal Decree 933/2021, all adult guests must complete this form before check-in. Your data will be reported to the competent authorities within the legally established period.',
+      secEstancia:  'Stay Dates',
+      secContacto:  'Contact Details',
+      sec5:         'Consent & Submit',
+      huesped:      'Guest',
+      secPersonal:  'Personal details',
+      secDoc:       'Identity document',
+      btnAnadir:    'Add another guest',
+      btnEliminar:  'Remove',
+      lblNombre:    'First name *', lblApellido1: 'First surname *', lblApellido2: 'Second surname',
+      lblFnac:      'Date of birth *', lblSexo: 'Sex *',
       sexoPlaceholder: '— Select —', sexoM: 'Male', sexoF: 'Female', sexoX: 'Not specified',
       lblNacionalidad: 'Nationality *',
-      lblTipodoc: 'Document type *', tipodocPlaceholder: '— Select —',
+      lblTipodoc:   'Document type *', tipodocPlaceholder: '— Select —',
       tipodocPasaporte: 'Passport', tipodocTarjeta: 'Residence Card', tipodocOtro: 'Other',
-      lblNumdoc: 'Document number *', lblFexpedicion: 'Issue date *',
-      lblSoporte: 'Support number (DNI)', notaSoporte: 'Number on the back of the Spanish ID card (e.g. AAA000000).',
-      lblDomicilio: 'Street address *',
-      lblCp: 'Postal code *',
-      lblPaisRes: 'Country of residence *',
-      notaDomicilio: 'Guest\'s usual home address — required by the Spanish Ministry of Interior (RD 933/2021).',
-      fotosTitulo: 'Document photographs (optional)',
-      fotosOpcional: 'Please attach a photo of the front and, if possible, the back. Only JPG or PNG (max. 4 MB). If you prefer not to attach them, send them via WhatsApp to +34 611 164 242.',
+      lblNumdoc:    'Document number *', lblFexpedicion: 'Issue date *',
+      lblSoporte:   'Support number (DNI)',
+      notaSoporte:  'Number on the back of the Spanish ID card (e.g. AAA000000).',
+      fotosTitulo:  'Document photographs (optional)',
+      fotosOpcional:'Please attach a photo of the front and, if possible, the back. Only JPG or PNG (max. 4 MB). If you prefer not to attach them, send them via WhatsApp to +34 611 164 242.',
       fotoFrontalTitulo: 'Front side', fotoFrontalSub: 'Obverse · JPG / PNG', fotoFrontalBtn: 'Choose image',
       fotoTraseroTitulo: 'Back side',  fotoTraseroSub: 'Reverse · JPG / PNG',  fotoTraseroBtn: 'Choose image',
-      errFotoTamano: 'The image exceeds the 4 MB limit.',
-      lblFentrada: 'Check-in date *', lblFsalida: 'Check-out date *',
-      lblTelefono: 'Phone *',
-      lblEmail: 'Email address *',
-      notaEmail: 'We will use this email to send you the apartment check-in instructions.',
-      checkPrivacidad: 'I have read and accept the <a id="link-privacidad-en" href="#">Privacy Policy</a>. <span class="req">*</span>',
+      errFotoTamano:'The image exceeds the 4 MB limit.',
+      lblFentrada:  'Check-in date *', lblFsalida: 'Check-out date *',
+      lblTelefono:  'Phone *',
+      lblViaTipo:   'Street type *', viaPlaceholder: '— Type —',
+      viaCalle: 'Street', viaAvenida: 'Avenue', viaPlaza: 'Square', viaPaseo: 'Promenade', viaCamino: 'Road',
+      viaCarretera: 'Highway', viaRonda: 'Ring road', viaUrbanizacion: 'Estate',
+      viaCuesta: 'Hill', viaTravesia: 'Crossing', viaCallejon: 'Alley', viaBulevar: 'Boulevard', viaOtro: 'Other',
+      lblViaNombre: 'Street name *', lblViaNumero: 'Number *',
+      lblCp:        'Postcode *', lblPoblacion: 'Town *',
+      lblCiudad:    'Region / County *', lblPais: 'Country *',
+      lblEmail:     'Email address *',
+      notaEmail:    'We will use this email to send you the apartment check-in instructions.',
+      checkPrivacidad:  'I have read and accept the <a id="link-privacidad-en" href="#">Privacy Policy</a>. <span class="req">*</span>',
       checkAutoridades: 'I acknowledge that, pursuant to RD 933/2021, the data provided will be reported to the competent authorities within 24 hours. <span class="req">*</span>',
-      btnEnviar: 'Submit registration',
-      progresoTexto: 'Uploading data and photos, please wait…',
+      btnEnviar:    'Submit registration',
+      progresoTexto:'Uploading data and photos, please wait…',
       errRequerido: 'This field is required.', errFecha: 'Please enter a valid date.',
-      errSalida: 'Check-out date must be after check-in date.', errEmail: 'Please enter a valid email address.',
+      errSalida:    'Check-out date must be after check-in date.',
+      errEmail:     'Please enter a valid email address.',
       errEnvioTitulo: 'The form could not be sent.',
-      errEnvioTexto: 'Please try again or contact us via <a href="https://wa.me/34611164242" target="_blank" rel="noopener">WhatsApp</a> at +34 611 164 242.',
-      confTitulo: 'Registration complete!',
-      confTexto1: 'We have received all guests\' details. You will shortly receive the check-in instructions by email.',
+      errEnvioTexto:  'Please try again or contact us via <a href="https://wa.me/34611164242" target="_blank" rel="noopener">WhatsApp</a> at +34 611 164 242.',
+      confTitulo:   'registration complete!',
+      confTexto1:   'We have received all guests\' details. You will shortly receive the check-in instructions by email.',
       confLblReserva: 'Booking Ref.', confLblCaja: 'Entry Code',
-      confTexto2: 'If you have any questions, we are here for you:',
-      footerTxt: '© Ático Marbella Centro · Calle Jacinto Benavente 8, Edificio Marbelsun III, Marbella',
+      confTexto2:   'If you have any questions, we are here for you:',
+      footerTxt:    '© Ático Marbella Centro · Calle Jacinto Benavente 8, Edificio Marbelsun III, Marbella',
       footerPrivacidad: 'Privacy Policy',
     }
   };
 
-  /* ══════════════════════════════════════════════════
-     GESTIÓN DE HUÉSPEDES (dinámica)
-  ══════════════════════════════════════════════════ */
+  /* ── GESTIÓN MULTI-HUÉSPED ── */
   let currentLang  = 'es';
-  let guestCounter = 0;      // índice acumulativo (nunca decrece)
-  let guestList    = [];     // índices de bloques activos en orden
+  let guestCounter = 0;
+  let guestList    = [];
 
-  /** Genera el HTML interno de un bloque de huésped */
   function bloqueHuespedHTML(idx) {
     return `
       <div class="bloque-huesped-header">
-        <h2 class="seccion-titulo" style="margin:0;padding:0;border:none;">
-          <span aria-hidden="true">👤</span>
-          <span id="titulo-huesped-${idx}"></span>
-        </h2>
+        <h2 class="seccion-titulo" id="titulo-huesped-${idx}"></h2>
         <button type="button" class="btn-eliminar-huesped" id="btn-elim-${idx}"
                 onclick="eliminarHuesped(${idx})" style="display:none"></button>
       </div>
 
-      <!-- PERSONAL -->
-      <div class="campo-seccion-sub" id="sub-personal-${idx}"></div>
-      <div class="campo-fila">
+      <p class="campo-seccion-sub" id="sub-personal-${idx}"></p>
+      <div class="fila cols-3">
         <div class="campo">
           <label for="nombre-${idx}" id="lbl-nombre-${idx}"></label>
           <input type="text" id="nombre-${idx}" autocomplete="given-name" required>
@@ -414,16 +721,21 @@ header h1 {
           <input type="text" id="apellido1-${idx}" autocomplete="family-name" required>
           <span class="mensaje-error" id="err-apellido1-${idx}"></span>
         </div>
+        <div class="campo">
+          <label for="apellido2-${idx}" id="lbl-apellido2-${idx}"></label>
+          <input type="text" id="apellido2-${idx}" autocomplete="additional-name">
+        </div>
       </div>
-      <div class="campo">
-        <label for="apellido2-${idx}" id="lbl-apellido2-${idx}"></label>
-        <input type="text" id="apellido2-${idx}" autocomplete="additional-name">
-      </div>
-      <div class="campo-fila">
+      <div class="fila cols-3">
         <div class="campo">
           <label for="fnac-${idx}" id="lbl-fnac-${idx}"></label>
           <input type="date" id="fnac-${idx}" required>
           <span class="mensaje-error" id="err-fnac-${idx}"></span>
+        </div>
+        <div class="campo">
+          <label for="nac-${idx}" id="lbl-nac-${idx}"></label>
+          <input type="text" id="nac-${idx}" autocomplete="country-name" required>
+          <span class="mensaje-error" id="err-nac-${idx}"></span>
         </div>
         <div class="campo">
           <label for="sexo-${idx}" id="lbl-sexo-${idx}"></label>
@@ -436,15 +748,9 @@ header h1 {
           <span class="mensaje-error" id="err-sexo-${idx}"></span>
         </div>
       </div>
-      <div class="campo">
-        <label for="nac-${idx}" id="lbl-nac-${idx}"></label>
-        <input type="text" id="nac-${idx}" autocomplete="country-name" required>
-        <span class="mensaje-error" id="err-nac-${idx}"></span>
-      </div>
 
-      <!-- DOCUMENTO -->
-      <div class="campo-seccion-sub" id="sub-doc-${idx}"></div>
-      <div class="campo-fila">
+      <p class="campo-seccion-sub" id="sub-doc-${idx}"></p>
+      <div class="fila cols-3">
         <div class="campo">
           <label for="tipodoc-${idx}" id="lbl-tipodoc-${idx}"></label>
           <select id="tipodoc-${idx}" required>
@@ -462,48 +768,28 @@ header h1 {
           <input type="text" id="numdoc-${idx}" required>
           <span class="mensaje-error" id="err-numdoc-${idx}"></span>
         </div>
-      </div>
-      <div class="campo">
-        <label for="fexp-${idx}" id="lbl-fexp-${idx}"></label>
-        <input type="date" id="fexp-${idx}" required>
-        <span class="mensaje-error" id="err-fexp-${idx}"></span>
-      </div>
-      <div class="campo" id="campo-soporte-${idx}" style="display:none">
-        <label for="soporte-${idx}" id="lbl-soporte-${idx}"></label>
-        <input type="text" id="soporte-${idx}">
-        <p class="nota" id="nota-soporte-${idx}"></p>
-      </div>
-
-      <!-- DOMICILIO HABITUAL (obligatorio SES — RD 933/2021) -->
-      <div class="campo-seccion-sub" id="sub-dom-${idx}"></div>
-      <div class="campo">
-        <label for="domicilio-${idx}" id="lbl-domicilio-${idx}"></label>
-        <input type="text" id="domicilio-${idx}" autocomplete="street-address" required>
-        <span class="mensaje-error" id="err-domicilio-${idx}"></span>
-        <p class="nota" id="nota-domicilio-${idx}"></p>
-      </div>
-      <div class="campo-fila">
         <div class="campo">
-          <label for="cp-${idx}" id="lbl-cp-${idx}"></label>
-          <input type="text" id="cp-${idx}" autocomplete="postal-code" required>
-          <span class="mensaje-error" id="err-cp-${idx}"></span>
+          <label for="fexp-${idx}" id="lbl-fexp-${idx}"></label>
+          <input type="date" id="fexp-${idx}" required>
+          <span class="mensaje-error" id="err-fexp-${idx}"></span>
         </div>
+      </div>
+      <div class="fila" id="campo-soporte-${idx}" style="display:none">
         <div class="campo">
-          <label for="paisres-${idx}" id="lbl-paisres-${idx}"></label>
-          <input type="text" id="paisres-${idx}" autocomplete="country-name" required>
-          <span class="mensaje-error" id="err-paisres-${idx}"></span>
+          <label for="soporte-${idx}" id="lbl-soporte-${idx}"></label>
+          <input type="text" id="soporte-${idx}">
+          <p class="nota" id="nota-soporte-${idx}"></p>
         </div>
       </div>
 
-      <!-- FOTOS -->
       <div class="fotos-wrap">
-        <span class="fotos-label" id="fotos-titulo-${idx}"></span>
-        <p class="fotos-opcional" id="fotos-opcional-${idx}"></p>
+        <span class="fotos-label"   id="fotos-titulo-${idx}"></span>
+        <p class="fotos-opcional"   id="fotos-opcional-${idx}"></p>
         <div class="caras-documento">
           <div class="caja-foto" id="caja-frontal-${idx}">
             <input type="file" id="foto-frontal-${idx}" accept="image/jpeg,image/jpg,image/png">
             <label for="foto-frontal-${idx}">
-              <span class="icono-foto" aria-hidden="true">📷</span>
+              <span class="icono-foto" aria-hidden="true"></span>
               <span class="cara-titulo" id="frontal-titulo-${idx}"></span>
               <span class="cara-sub"   id="frontal-sub-${idx}"></span>
               <span class="btn-elegir" id="frontal-btn-${idx}"></span>
@@ -514,7 +800,7 @@ header h1 {
           <div class="caja-foto" id="caja-trasero-${idx}">
             <input type="file" id="foto-trasero-${idx}" accept="image/jpeg,image/jpg,image/png">
             <label for="foto-trasero-${idx}">
-              <span class="icono-foto" aria-hidden="true">📷</span>
+              <span class="icono-foto" aria-hidden="true"></span>
               <span class="cara-titulo" id="trasero-titulo-${idx}"></span>
               <span class="cara-sub"   id="trasero-sub-${idx}"></span>
               <span class="btn-elegir" id="trasero-btn-${idx}"></span>
@@ -527,17 +813,16 @@ header h1 {
     `;
   }
 
-  /** Crea y añade un bloque de huésped al contenedor */
   function añadirHuesped() {
     guestCounter++;
     const idx = guestCounter;
     guestList.push(idx);
 
     const div = document.createElement('div');
-    div.className = 'bloque-huesped seccion';
-    div.id = 'bloque-huesped-' + idx;
+    div.className  = 'bloque-huesped';
+    div.id         = 'bloque-huesped-' + idx;
     div.dataset.idx = idx;
-    div.innerHTML = bloqueHuespedHTML(idx);
+    div.innerHTML  = bloqueHuespedHTML(idx);
 
     document.getElementById('huespedes-container').appendChild(div);
     inicializarBloqueHuesped(idx);
@@ -549,21 +834,19 @@ header h1 {
     }
   }
 
-  /** Elimina el bloque de huésped con el índice dado */
   function eliminarHuesped(idx) {
     const bloque = document.getElementById('bloque-huesped-' + idx);
     if (bloque) bloque.remove();
-    guestList = guestList.filter(function(i) { return i !== idx; });
+    guestList = guestList.filter(i => i !== idx);
     actualizarControlesHuespedes();
   }
 
-  /** Actualiza títulos ("Huésped 1", "Huésped 2"…) y visibilidad del botón eliminar */
   function actualizarControlesHuespedes() {
     const t = T[currentLang];
-    guestList.forEach(function(idx, pos) {
-      var titulo = document.getElementById('titulo-huesped-' + idx);
+    guestList.forEach((idx, pos) => {
+      const titulo = document.getElementById('titulo-huesped-' + idx);
       if (titulo) titulo.textContent = t.huesped + ' ' + (pos + 1);
-      var btnElim = document.getElementById('btn-elim-' + idx);
+      const btnElim = document.getElementById('btn-elim-' + idx);
       if (btnElim) {
         btnElim.style.display = guestList.length > 1 ? 'inline-block' : 'none';
         btnElim.textContent = t.btnEliminar;
@@ -571,28 +854,24 @@ header h1 {
     });
   }
 
-  /** Configura los listeners de un bloque recién creado */
   function inicializarBloqueHuesped(idx) {
-    // Mostrar campo soporte solo si el tipo de doc es DNI o NIE
-    var tipodocEl = document.getElementById('tipodoc-' + idx);
+    const tipodocEl = document.getElementById('tipodoc-' + idx);
     if (tipodocEl) {
       tipodocEl.addEventListener('change', function() {
-        var soporte = document.getElementById('campo-soporte-' + idx);
-        if (soporte) soporte.style.display = (this.value === 'DNI' || this.value === 'NIE') ? 'block' : 'none';
+        const soporte = document.getElementById('campo-soporte-' + idx);
+        if (soporte) soporte.style.display = this.value === 'DNI' ? '' : 'none';
       });
     }
-    // Preview fotos
     setupFoto('foto-frontal-' + idx, 'caja-frontal-' + idx, 'preview-frontal-' + idx, 'nombre-frontal-' + idx);
     setupFoto('foto-trasero-' + idx, 'caja-trasero-' + idx, 'preview-trasero-' + idx, 'nombre-trasero-' + idx);
   }
 
-  /** Aplica las traducciones a todos los elementos de un bloque */
   function applyLangToBlock(bloque, t) {
-    var idx = bloque.dataset.idx;
-    var pos = guestList.indexOf(Number(idx));
+    const idx = bloque.dataset.idx;
+    const pos = guestList.indexOf(Number(idx));
 
     setText('titulo-huesped-' + idx, t.huesped + ' ' + (pos + 1));
-    var btnElim = document.getElementById('btn-elim-' + idx);
+    const btnElim = document.getElementById('btn-elim-' + idx);
     if (btnElim) {
       btnElim.textContent = t.btnEliminar;
       btnElim.style.display = guestList.length > 1 ? 'inline-block' : 'none';
@@ -600,21 +879,18 @@ header h1 {
 
     setText('sub-personal-' + idx, t.secPersonal);
     setText('sub-doc-'      + idx, t.secDoc);
-    setText('sub-dom-'      + idx, t.secDomicilio);
 
-    // Campos personales
-    setText('lbl-nombre-'   + idx, t.lblNombre);
-    setText('lbl-apellido1-'+ idx, t.lblApellido1);
-    setText('lbl-apellido2-'+ idx, t.lblApellido2);
-    setText('lbl-fnac-'     + idx, t.lblFnac);
-    setText('lbl-sexo-'     + idx, t.lblSexo);
-    setText('lbl-nac-'      + idx, t.lblNacionalidad);
+    setText('lbl-nombre-'    + idx, t.lblNombre);
+    setText('lbl-apellido1-' + idx, t.lblApellido1);
+    setText('lbl-apellido2-' + idx, t.lblApellido2);
+    setText('lbl-fnac-'      + idx, t.lblFnac);
+    setText('lbl-sexo-'      + idx, t.lblSexo);
+    setText('lbl-nac-'       + idx, t.lblNacionalidad);
     setText('sexo-ph-' + idx, t.sexoPlaceholder);
     setText('sexo-m-'  + idx, t.sexoM);
     setText('sexo-f-'  + idx, t.sexoF);
     setText('sexo-x-'  + idx, t.sexoX);
 
-    // Documento
     setText('lbl-tipodoc-'  + idx, t.lblTipodoc);
     setText('lbl-numdoc-'   + idx, t.lblNumdoc);
     setText('lbl-fexp-'     + idx, t.lblFexpedicion);
@@ -625,13 +901,6 @@ header h1 {
     setText('tdtar-' + idx, t.tipodocTarjeta);
     setText('tdotr-' + idx, t.tipodocOtro);
 
-    // Domicilio
-    setText('lbl-domicilio-'  + idx, t.lblDomicilio);
-    setText('nota-domicilio-' + idx, t.notaDomicilio);
-    setText('lbl-cp-'         + idx, t.lblCp);
-    setText('lbl-paisres-'    + idx, t.lblPaisRes);
-
-    // Fotos
     setText('fotos-titulo-'  + idx, t.fotosTitulo);
     setText('fotos-opcional-'+ idx, t.fotosOpcional);
     setText('frontal-titulo-'+ idx, t.fotoFrontalTitulo);
@@ -642,97 +911,105 @@ header h1 {
     setText('trasero-btn-'   + idx, t.fotoTraseroBtn);
   }
 
-  /* ══════════════════════════════════════════════════
-     IDIOMA
-  ══════════════════════════════════════════════════ */
+  /* ── IDIOMA ── */
   function getLang() {
-    var p = new URLSearchParams(window.location.search).get('lang');
+    const p = new URLSearchParams(window.location.search).get('lang');
     if (p === 'es' || p === 'en') return p;
-    var s = localStorage.getItem('lang');
+    const s = localStorage.getItem('lang');
     if (s === 'es' || s === 'en') return s;
     return 'es';
   }
   function setLang(lang) {
     currentLang = lang;
     localStorage.setItem('lang', lang);
-    var u = new URL(window.location.href);
+    const u = new URL(window.location.href);
     u.searchParams.set('lang', lang);
     window.history.replaceState({}, '', u);
     applyLang();
   }
 
   function applyLang() {
-    var t = T[currentLang];
+    const t = T[currentLang];
     document.documentElement.lang = currentLang;
     document.getElementById('btn-es').classList.toggle('activo', currentLang === 'es');
     document.getElementById('btn-en').classList.toggle('activo', currentLang === 'en');
 
-    // Estáticos
-    setText('hdr-titulo',         t.hdrTitulo);
-    setText('sec-estancia-titulo',t.secEstancia);
-    setText('sec-contacto-titulo',t.secContacto);
-    setText('sec5-titulo',        t.sec5);
-    setText('lbl-fentrada',       t.lblFentrada);
-    setText('lbl-fsalida',        t.lblFsalida);
-    setText('lbl-telefono',       t.lblTelefono);
-    setText('lbl-email',          t.lblEmail);
-    setText('nota-email',         t.notaEmail);
-    setText('lbl-btn-anadir',     t.btnAnadir);
-    setText('btn-enviar',         t.btnEnviar);
-    setText('conf-titulo',        t.confTitulo);
-    setText('conf-texto1',        t.confTexto1);
-    setText('conf-texto2',        t.confTexto2);
-    setText('conf-lbl-reserva',   t.confLblReserva);
-    setText('conf-lbl-caja',      t.confLblCaja);
-    setText('footer-txt',         t.footerTxt);
-    setText('err-envio-titulo',   t.errEnvioTitulo);
+    setText('hdr-titulo',           t.hdrTitulo);
+    setText('sec-estancia-titulo',  t.secEstancia);
+    setText('sec-contacto-titulo',  t.secContacto);
+    setText('sec5-titulo',          t.sec5);
+    setText('lbl-fentrada',         t.lblFentrada);
+    setText('lbl-fsalida',          t.lblFsalida);
+    setText('lbl-telefono',         t.lblTelefono);
+    setText('lbl-via-tipo',         t.lblViaTipo);
+    setText('lbl-via-nombre',       t.lblViaNombre);
+    setText('lbl-via-numero',       t.lblViaNumero);
+    setText('lbl-cp',               t.lblCp);
+    setText('lbl-poblacion',        t.lblPoblacion);
+    setText('lbl-ciudad',           t.lblCiudad);
+    setText('lbl-pais',             t.lblPais);
+    setText('lbl-email',            t.lblEmail);
+    setText('nota-email',           t.notaEmail);
+    setText('lbl-btn-anadir',       t.btnAnadir);
+    setText('btn-enviar',           t.btnEnviar);
+    setText('conf-titulo',          t.confTitulo);
+    setText('conf-texto1',          t.confTexto1);
+    setText('conf-texto2',          t.confTexto2);
+    setText('conf-lbl-reserva',     t.confLblReserva);
+    setText('conf-lbl-caja',        t.confLblCaja);
+    setText('footer-txt',           t.footerTxt);
+    setText('err-envio-titulo',     t.errEnvioTitulo);
     setText('barra-progreso-label', t.progresoTexto);
 
-    setHTML('aviso-legal',            t.avisoLegal);
-    setHTML('lbl-check-privacidad',   t.checkPrivacidad);
-    setHTML('lbl-check-autoridades',  t.checkAutoridades);
-    setHTML('footer-privacidad-link', '<a href="/privacidad?lang=' + currentLang + '">' + t.footerPrivacidad + '</a>');
-    setHTML('err-envio-texto',        t.errEnvioTexto);
+    setHTML('aviso-legal',           t.avisoLegal);
+    setHTML('lbl-check-privacidad',  t.checkPrivacidad);
+    setHTML('lbl-check-autoridades', t.checkAutoridades);
+    setHTML('footer-privacidad-link', `<a href="/privacidad?lang=${currentLang}">${t.footerPrivacidad}</a>`);
+    setHTML('err-envio-texto',       t.errEnvioTexto);
 
-    // Links de privacidad dinámicos
-    ['link-privacidad-es', 'link-privacidad-en'].forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el) el.href = '/privacidad?lang=' + currentLang;
+    ['link-privacidad-es', 'link-privacidad-en'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.href = `/privacidad?lang=${currentLang}`;
     });
 
-    // Bloques de huéspedes
-    var container = document.getElementById('huespedes-container');
-    var bloques = container.querySelectorAll('.bloque-huesped');
-    bloques.forEach(function(bloque) { applyLangToBlock(bloque, t); });
+    ['via-placeholder','via-calle','via-avenida','via-plaza','via-paseo','via-camino',
+     'via-carretera','via-ronda','via-urbanizacion','via-cuesta','via-travesia',
+     'via-callejon','via-bulevar','via-otro'].forEach((id, i) => {
+      setText(id, [t.viaPlaceholder, t.viaCalle, t.viaAvenida, t.viaPlaza, t.viaPaseo,
+        t.viaCamino, t.viaCarretera, t.viaRonda, t.viaUrbanizacion, t.viaCuesta,
+        t.viaTravesia, t.viaCallejon, t.viaBulevar, t.viaOtro][i]);
+    });
+
+    document.getElementById('huespedes-container')
+      .querySelectorAll('.bloque-huesped')
+      .forEach(bloque => applyLangToBlock(bloque, t));
   }
 
-  function setText(id, v) { var e = document.getElementById(id); if (e) e.textContent = v || ''; }
-  function setHTML(id, v) { var e = document.getElementById(id); if (e) e.innerHTML = v || ''; }
+  function setText(id, v) { const e = document.getElementById(id); if (e) e.textContent = v || ''; }
+  function setHTML(id, v) { const e = document.getElementById(id); if (e) e.innerHTML  = v || ''; }
 
-  /* ══════════════════════════════════════════════════
-     FOTOS
-  ══════════════════════════════════════════════════ */
+  /* ── FOTOS ── */
   function fileToBase64(file) {
-    return new Promise(function(resolve, reject) {
-      var reader = new FileReader();
-      reader.onload  = function() { resolve(reader.result.split(',')[1]); };
-      reader.onerror = function() { reject(new Error('Error leyendo archivo')); };
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload  = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = () => reject(new Error('Error leyendo archivo'));
       reader.readAsDataURL(file);
     });
   }
 
   function setupFoto(inputId, cajaId, previewId, nombreId) {
-    var input = document.getElementById(inputId);
+    const input = document.getElementById(inputId);
     if (!input) return;
     input.addEventListener('change', function() {
-      var file    = this.files[0];
-      var caja    = document.getElementById(cajaId);
-      var preview = document.getElementById(previewId);
-      var nombre  = document.getElementById(nombreId);
+      const file    = this.files[0];
+      const caja    = document.getElementById(cajaId);
+      const preview = document.getElementById(previewId);
+      const nombre  = document.getElementById(nombreId);
       if (!file) {
-        if (caja)    caja.classList.remove('tiene-imagen');
-        if (preview) preview.style.display = 'none';
-        if (nombre)  nombre.style.display  = 'none';
+        caja.classList.remove('tiene-imagen');
+        preview.style.display = 'none';
+        nombre.style.display  = 'none';
         return;
       }
       if (file.size > MAX_IMG_BYTES) {
@@ -740,85 +1017,79 @@ header h1 {
         this.value = '';
         return;
       }
-      var url = URL.createObjectURL(file);
-      if (preview) { preview.src = url; preview.style.display = 'block'; }
-      if (nombre)  { nombre.textContent = file.name; nombre.style.display = 'block'; }
-      if (caja)    caja.classList.add('tiene-imagen');
+      const url = URL.createObjectURL(file);
+      preview.src = url; preview.style.display = 'block';
+      nombre.textContent = file.name; nombre.style.display = 'block';
+      caja.classList.add('tiene-imagen');
     });
   }
 
-  /* ══════════════════════════════════════════════════
-     VALIDACIÓN
-  ══════════════════════════════════════════════════ */
+  /* ── VALIDACIÓN ── */
   function validateForm() {
-    var t = T[currentLang];
-    var valid = true;
+    const t = T[currentLang];
+    let valid = true;
 
     function req(id, errId) {
-      var el = document.getElementById(id);
+      const el = document.getElementById(id);
       if (!el) return;
       if (!el.value.trim()) { markError(el, errId, t.errRequerido); valid = false; }
       else clearError(el, errId);
     }
     function reqSelect(id, errId) {
-      var el = document.getElementById(id);
+      const el = document.getElementById(id);
       if (!el) return;
       if (!el.value) { markError(el, errId, t.errRequerido); valid = false; }
       else clearError(el, errId);
     }
     function reqDate(id, errId) {
-      var el = document.getElementById(id);
+      const el = document.getElementById(id);
       if (!el) return '';
       if (!el.value) { markError(el, errId, t.errFecha); valid = false; return ''; }
       clearError(el, errId);
       return el.value;
     }
 
-    // Validar cada huésped
-    guestList.forEach(function(idx) {
-      req('nombre-'    + idx, 'err-nombre-'    + idx);
-      req('apellido1-' + idx, 'err-apellido1-' + idx);
-      reqDate('fnac-'  + idx, 'err-fnac-'      + idx);
-      reqSelect('sexo-'+ idx, 'err-sexo-'      + idx);
-      req('nac-'       + idx, 'err-nac-'       + idx);
-      reqSelect('tipodoc-'+ idx, 'err-tipodoc-'+ idx);
-      req('numdoc-'    + idx, 'err-numdoc-'    + idx);
-      reqDate('fexp-'  + idx, 'err-fexp-'      + idx);
-      // Domicilio habitual (obligatorio para SES)
-      req('domicilio-' + idx, 'err-domicilio-' + idx);
-      req('cp-'        + idx, 'err-cp-'        + idx);
-      req('paisres-'   + idx, 'err-paisres-'   + idx);
+    guestList.forEach(idx => {
+      req('nombre-'        + idx, 'err-nombre-'    + idx);
+      req('apellido1-'     + idx, 'err-apellido1-' + idx);
+      reqDate('fnac-'      + idx, 'err-fnac-'      + idx);
+      reqSelect('sexo-'    + idx, 'err-sexo-'      + idx);
+      req('nac-'           + idx, 'err-nac-'       + idx);
+      reqSelect('tipodoc-' + idx, 'err-tipodoc-'   + idx);
+      req('numdoc-'        + idx, 'err-numdoc-'    + idx);
+      reqDate('fexp-'      + idx, 'err-fexp-'      + idx);
     });
 
-    // Estancia
-    var entrada = reqDate('fecha-entrada', 'err-fentrada');
-    var salida  = reqDate('fecha-salida',  'err-fsalida');
+    const entrada = reqDate('fecha-entrada', 'err-fentrada');
+    const salida  = reqDate('fecha-salida',  'err-fsalida');
     if (entrada && salida && salida <= entrada) {
       markError(document.getElementById('fecha-salida'), 'err-fsalida', t.errSalida);
       valid = false;
     }
 
-    // Contacto
-    req('telefono', 'err-telefono');
-    var emailEl = document.getElementById('email');
-    if (!emailEl.value.trim()) {
-      markError(emailEl, 'err-email', t.errRequerido);
-      valid = false;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
-      markError(emailEl, 'err-email', t.errEmail);
-      valid = false;
-    } else {
-      clearError(emailEl, 'err-email');
-    }
+    req('telefono',   'err-telefono');
+    reqSelect('via-tipo',   'err-via-tipo');
+    req('via-nombre', 'err-via-nombre');
+    req('via-numero', 'err-via-numero');
+    req('cp',         'err-cp');
+    req('poblacion',  'err-poblacion');
+    req('ciudad',     'err-ciudad');
+    req('pais',       'err-pais');
 
-    // Checkboxes
-    var chkPriv = document.getElementById('acepta-privacidad');
-    var wrapPriv = document.getElementById('wrap-check-privacidad');
+    const emailEl = document.getElementById('email');
+    if (!emailEl.value.trim()) {
+      markError(emailEl, 'err-email', t.errRequerido); valid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
+      markError(emailEl, 'err-email', t.errEmail); valid = false;
+    } else clearError(emailEl, 'err-email');
+
+    const chkPriv  = document.getElementById('acepta-privacidad');
+    const wrapPriv = document.getElementById('wrap-check-privacidad');
     if (!chkPriv.checked) { wrapPriv.classList.add('invalido'); valid = false; }
     else wrapPriv.classList.remove('invalido');
 
-    var chkAut  = document.getElementById('acepta-autoridades');
-    var wrapAut = document.getElementById('wrap-check-autoridades');
+    const chkAut  = document.getElementById('acepta-autoridades');
+    const wrapAut = document.getElementById('wrap-check-autoridades');
     if (!chkAut.checked) { wrapAut.classList.add('invalido'); valid = false; }
     else wrapAut.classList.remove('invalido');
 
@@ -828,120 +1099,118 @@ header h1 {
   function markError(el, errId, msg) {
     if (!el) return;
     el.classList.add('invalido');
-    var s = document.getElementById(errId);
+    const s = document.getElementById(errId);
     if (s) { s.textContent = msg; s.style.display = 'block'; }
   }
   function clearError(el, errId) {
     if (!el) return;
     el.classList.remove('invalido');
-    var s = document.getElementById(errId);
+    const s = document.getElementById(errId);
     if (s) { s.textContent = ''; s.style.display = 'none'; }
   }
 
-  /* ══════════════════════════════════════════════════
-     BARRA DE PROGRESO SIMULADA
-  ══════════════════════════════════════════════════ */
+  /* ── PROGRESO ── */
   function iniciarProgreso() {
-    var wrap  = document.getElementById('barra-progreso-wrap');
-    var inner = document.getElementById('barra-progreso-inner');
+    const wrap  = document.getElementById('barra-progreso-wrap');
+    const inner = document.getElementById('barra-progreso-inner');
+    const label = document.getElementById('barra-progreso-label');
     wrap.style.display = 'block';
+    label.textContent  = T[currentLang].progresoTexto;
     inner.style.width  = '0%';
-    var pct = 0;
-    var iv = setInterval(function() {
+    let pct = 0;
+    const iv = setInterval(() => {
       pct = Math.min(pct + Math.random() * 10, 85);
       inner.style.width = pct + '%';
     }, 350);
     return {
-      completar: function() {
+      completar: () => {
         clearInterval(iv);
         inner.style.width = '100%';
-        setTimeout(function() { wrap.style.display = 'none'; inner.style.width = '0%'; }, 600);
+        setTimeout(() => { wrap.style.display = 'none'; inner.style.width = '0%'; }, 600);
       }
     };
   }
 
-  /* ══════════════════════════════════════════════════
-     ENVÍO
-  ══════════════════════════════════════════════════ */
+  /* ── ENVÍO ── */
   document.getElementById('form-registro').addEventListener('submit', async function(e) {
     e.preventDefault();
 
     if (document.getElementById('campo-trampa').value !== '') return;
 
     if (!validateForm()) {
-      var fi = document.querySelector('.invalido');
+      const fi = document.querySelector('.invalido');
       if (fi) fi.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
 
-    var btn = document.getElementById('btn-enviar');
+    const btn = document.getElementById('btn-enviar');
     btn.disabled = true;
     btn.textContent = currentLang === 'es' ? 'Enviando…' : 'Sending…';
-    var err = document.getElementById('error-envio');
-    if (err) err.style.display = 'none';
-    var progreso = iniciarProgreso();
+    document.getElementById('error-envio').style.display = 'none';
 
-    // Leer fotos de todos los huéspedes
-    var huespedes = [];
-    var g = function(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
+    const progreso = iniciarProgreso();
+    const g = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
 
+    const huespedes = [];
     try {
-      for (var i = 0; i < guestList.length; i++) {
-        var idx = guestList[i];
-        var h = {
+      for (const idx of guestList) {
+        const h = {
           nombre:          g('nombre-'    + idx),
           apellido1:       g('apellido1-' + idx),
           apellido2:       g('apellido2-' + idx),
           fechaNacimiento: g('fnac-'      + idx),
-          sexo:            (document.getElementById('sexo-'    + idx) || {}).value || '',
+          sexo:            document.getElementById('sexo-'    + idx)?.value || '',
           nacionalidad:    g('nac-'       + idx),
-          tipoDocumento:   (document.getElementById('tipodoc-' + idx) || {}).value || '',
+          tipoDocumento:   document.getElementById('tipodoc-' + idx)?.value || '',
           numeroDocumento: g('numdoc-'    + idx),
           fechaExpedicion: g('fexp-'      + idx),
           numeroSoporte:   g('soporte-'   + idx),
-          // ── Domicilio habitual (V02 — requerido para XML SES) ──
-          domicilio:       g('domicilio-' + idx),
-          codigoPostal:    g('cp-'        + idx),
-          paisResidencia:  g('paisres-'   + idx),
-          fotoFrontalB64:  null, fotoFrontalMime: null,
-          fotoTraseroB64:  null, fotoTraseroMime: null,
+          fotoFrontalB64: null, fotoFrontalMime: null,
+          fotoTraseroB64: null, fotoTraseroMime: null,
         };
-        var fileFrontal = (document.getElementById('foto-frontal-' + idx) || {}).files;
-        var fileTrasero = (document.getElementById('foto-trasero-' + idx) || {}).files;
-        if (fileFrontal && fileFrontal[0]) {
+        const fileFrontal = document.getElementById('foto-frontal-' + idx)?.files;
+        const fileTrasero = document.getElementById('foto-trasero-' + idx)?.files;
+        if (fileFrontal?.[0]) {
           h.fotoFrontalB64  = await fileToBase64(fileFrontal[0]);
           h.fotoFrontalMime = fileFrontal[0].type;
         }
-        if (fileTrasero && fileTrasero[0]) {
+        if (fileTrasero?.[0]) {
           h.fotoTraseroB64  = await fileToBase64(fileTrasero[0]);
           h.fotoTraseroMime = fileTrasero[0].type;
         }
         huespedes.push(h);
       }
-    } catch (err) {
+    } catch {
       progreso.completar();
       btn.disabled = false; btn.textContent = T[currentLang].btnEnviar;
       showErrorEnvio();
       return;
     }
 
-    var reserva = {
+    const reserva = {
       fechaEntrada: g('fecha-entrada'),
       fechaSalida:  g('fecha-salida'),
       telefono:     g('telefono'),
+      viaTipo:      document.getElementById('via-tipo').value,
+      viaNombre:    g('via-nombre'),
+      viaNumero:    g('via-numero'),
+      codigoPostal: g('cp'),
+      poblacion:    g('poblacion'),
+      ciudad:       g('ciudad'),
+      pais:         g('pais'),
       email:        g('email'),
       idioma:       currentLang,
     };
 
-    var payload = { token: API_TOKEN, reserva: reserva, huespedes: huespedes };
+    const payload = { token: API_TOKEN, reserva, huespedes };
 
     try {
-      var res  = await fetch(WORKER_DEV_URL, {
+      const res  = await fetch(WORKER_DEV_URL, {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify(payload),
       });
-      var data = await res.json();
+      const data = await res.json();
 
       if (data.status === 'ok') {
         progreso.completar();
@@ -955,14 +1224,14 @@ header h1 {
         setText('conf-lbl-reserva', T[currentLang].confLblReserva);
         setText('conf-lbl-caja',    T[currentLang].confLblCaja);
 
-        var conf = document.getElementById('confirmacion');
+        const conf = document.getElementById('confirmacion');
         conf.style.display = 'block';
         conf.scrollIntoView({ behavior: 'smooth' });
       } else {
         progreso.completar();
         showErrorEnvio();
       }
-    } catch (err) {
+    } catch {
       progreso.completar();
       showErrorEnvio();
     } finally {
@@ -970,21 +1239,16 @@ header h1 {
     }
   });
 
-  function mostrarDebug() {} // stub — no hace nada en producción
-
   function showErrorEnvio() {
-    var b = document.getElementById('error-envio');
+    const b = document.getElementById('error-envio');
     b.style.display = 'block';
     b.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  /* ══════════════════════════════════════════════════
-     INICIALIZACIÓN
-  ══════════════════════════════════════════════════ */
+  /* ── INIT ── */
   document.getElementById('btn-anadir').addEventListener('click', añadirHuesped);
-
   currentLang = getLang();
-  añadirHuesped(); // crea el bloque Huésped 1 inicial
+  añadirHuesped();
   applyLang();
   </script>
 </body>
