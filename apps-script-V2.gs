@@ -579,23 +579,31 @@ function enviarEmailHuesped(reservaId, codigoCaja, reserva, huespedes) {
 </head>
 <body style="margin:0;padding:0;background-color:#f5f3ee;">
 
-  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#f5f3ee;">
+  <!-- ─── HEADER ────────────────────────────────────────── -->
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#1c1c1a;">
     <tr>
       <td align="center">
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;width:100%;">
-
-
-          <!-- ─── HEADER ────────────────────────────────────────── -->
           <tr>
-            <td align="center" style="background-color:#1c1c1a;padding:44px 48px 40px;">
+            <td align="center" style="padding:44px 48px 40px;">
               <p style="margin:0 0 8px 0;font-family:'rosalind',Georgia,serif;font-weight:400;font-size:28px;color:#e2dae1;letter-spacing:0.02em;line-height:1.2;">
                 Ático Marbella Centro
               </p>
-              <p style="margin:0;font-family:'inge-variable',Georgia,serif;font-weight:400;font-size:52px;color:#f5f3ee;line-height:1.05;letter-spacing:-0.01em;">
+              <p style="margin:0;font-family:'inge-variable',Georgia,serif;font-style:normal;font-weight:400;font-size:52px;color:#f5f3ee;line-height:1.05;letter-spacing:-0.01em;">
                 instrucciones de llegada
               </p>
             </td>
           </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <!-- CUERPO ──────────────────────────────────────────── -->
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#f5f3ee;">
+    <tr>
+      <td align="center">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;width:100%;">
 
 
           <!-- ─── SALUDO ─────────────────────────────────────────── -->
@@ -906,17 +914,24 @@ function enviarEmailHuesped(reservaId, codigoCaja, reserva, huespedes) {
           </tr>
 
 
-          <!-- ─── FOOTER ─────────────────────────────────────────── -->
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <!-- ─── FOOTER ─────────────────────────────────────────── -->
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#1c1c1a;">
+    <tr>
+      <td align="center">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;width:100%;">
           <tr>
-            <td align="center" style="background-color:#1c1c1a;padding:24px 48px;">
+            <td align="center" style="padding:24px 48px;">
               <p style="margin:0;font-family:'mozaic-geo-variable',Arial,sans-serif;font-weight:200;font-size:11px;color:#f5f3ee;line-height:1.8;letter-spacing:0.04em;">
                 Ático Marbella Centro · Calle Jacinto Benavente, 8 · Marbella, Málaga<br>
                 Este correo ha sido enviado automáticamente. Por favor, no respondas directamente a este mensaje.
               </p>
             </td>
           </tr>
-
-
         </table>
       </td>
     </tr>
@@ -935,23 +950,31 @@ function enviarEmailHuesped(reservaId, codigoCaja, reserva, huespedes) {
 </head>
 <body style="margin:0;padding:0;background-color:#f5f3ee;">
 
-  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#f5f3ee;">
+  <!-- ─── HEADER ────────────────────────────────────────── -->
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#1c1c1a;">
     <tr>
       <td align="center">
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;width:100%;">
-
-
-          <!-- ─── HEADER ────────────────────────────────────────── -->
           <tr>
-            <td align="center" style="background-color:#1c1c1a;padding:44px 48px 40px;">
+            <td align="center" style="padding:44px 48px 40px;">
               <p style="margin:0 0 8px 0;font-family:'rosalind',Georgia,serif;font-weight:400;font-size:28px;color:#e2dae1;letter-spacing:0.02em;line-height:1.2;">
                 Ático Marbella Centro
               </p>
-              <p style="margin:0;font-family:'inge-variable',Georgia,serif;font-weight:400;font-size:52px;color:#f5f3ee;line-height:1.05;letter-spacing:-0.01em;">
+              <p style="margin:0;font-family:'inge-variable',Georgia,serif;font-style:normal;font-weight:400;font-size:52px;color:#f5f3ee;line-height:1.05;letter-spacing:-0.01em;">
                 arrival instructions
               </p>
             </td>
           </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <!-- BODY ──────────────────────────────────────────────── -->
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#f5f3ee;">
+    <tr>
+      <td align="center">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;width:100%;">
 
 
           <!-- ─── GREETING ──────────────────────────────────────── -->
@@ -1262,17 +1285,24 @@ function enviarEmailHuesped(reservaId, codigoCaja, reserva, huespedes) {
           </tr>
 
 
-          <!-- ─── FOOTER ─────────────────────────────────────────── -->
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <!-- ─── FOOTER ─────────────────────────────────────────── -->
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#1c1c1a;">
+    <tr>
+      <td align="center">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;width:100%;">
           <tr>
-            <td align="center" style="background-color:#1c1c1a;padding:24px 48px;">
+            <td align="center" style="padding:24px 48px;">
               <p style="margin:0;font-family:'mozaic-geo-variable',Arial,sans-serif;font-weight:200;font-size:11px;color:#f5f3ee;line-height:1.8;letter-spacing:0.04em;">
                 Ático Marbella Centro · Calle Jacinto Benavente, 8 · Marbella, Málaga<br>
                 This email was sent automatically. Please do not reply directly to this message.
               </p>
             </td>
           </tr>
-
-
         </table>
       </td>
     </tr>

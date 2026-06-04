@@ -367,7 +367,7 @@
       text-transform: lowercase; letter-spacing: .01em;
       color: var(--grafito); margin-bottom: 1rem; line-height: .95;
     }
-    .confirmacion p { color: var(--texto); font-size: .92rem; line-height: 1.75; max-width: 460px; margin: 0 auto; letter-spacing: .01em; }
+    .confirmacion p { color: var(--texto); font-size: .92rem; line-height: 1.75; max-width: 460px; margin: 0 auto; letter-spacing: .01em; font-weight: 200; font-variation-settings: "wght" 200; }
     .confirmacion p + p { margin-top: .75rem; }
     .confirmacion .tel-confirmacion {
       display: inline-block; margin-top: 1.5rem;
@@ -423,18 +423,7 @@
       <span class="check" aria-hidden="true"></span>
       <h2 id="conf-titulo"></h2>
       <p id="conf-texto1"></p>
-      <div class="reserva-badge" id="conf-badge" style="display:none">
-        <div class="badge-row">
-          <span class="badge-label" id="conf-lbl-reserva"></span>
-          <span class="badge-val"   id="conf-reserva-id"></span>
-        </div>
-        <div class="badge-row">
-          <span class="badge-label" id="conf-lbl-caja"></span>
-          <span class="badge-val"   id="conf-codigo-caja"></span>
-        </div>
-      </div>
       <p id="conf-texto2"></p>
-      <a class="tel-confirmacion" href="https://wa.me/34611164242" target="_blank" rel="noopener">WhatsApp · +34 611 164 242</a>
     </div>
 
     <form id="form-registro" novalidate>
@@ -635,10 +624,10 @@
       errEmail:     'Introduce un correo válido.',
       errEnvioTitulo: 'No se pudo enviar el formulario.',
       errEnvioTexto:  'Inténtelo de nuevo o contáctenos por <a href="https://wa.me/34611164242" target="_blank" rel="noopener">WhatsApp</a> al +34 611 164 242.',
-      confTitulo:   '¡registro completado!',
-      confTexto1:   'Hemos recibido los datos de todos los huéspedes. En breve recibirá por email las instrucciones de entrada.',
+      confTitulo:   'registro completado',
+      confTexto1:   'Hemos recibido los datos de todos los huéspedes.',
       confLblReserva: 'Nº Reserva', confLblCaja: 'Código Caja',
-      confTexto2:   'Ante cualquier duda, estamos a su disposición:',
+      confTexto2:   'En breve recibirá por email las instrucciones de entrada.',
       footerTxt:    '© Ático Marbella Centro · Calle Jacinto Benavente 8, Edificio Marbelsun III, Marbella',
       footerPrivacidad: 'Política de Privacidad',
     },
@@ -687,10 +676,10 @@
       errEmail:     'Please enter a valid email address.',
       errEnvioTitulo: 'The form could not be sent.',
       errEnvioTexto:  'Please try again or contact us via <a href="https://wa.me/34611164242" target="_blank" rel="noopener">WhatsApp</a> at +34 611 164 242.',
-      confTitulo:   'registration complete!',
-      confTexto1:   'We have received all guests\' details. You will shortly receive the check-in instructions by email.',
+      confTitulo:   'registration complete',
+      confTexto1:   'We have received all guests\' details.',
       confLblReserva: 'Booking Ref.', confLblCaja: 'Entry Code',
-      confTexto2:   'If you have any questions, we are here for you:',
+      confTexto2:   'You will shortly receive the check-in instructions by email.',
       footerTxt:    '© Ático Marbella Centro · Calle Jacinto Benavente 8, Edificio Marbelsun III, Marbella',
       footerPrivacidad: 'Privacy Policy',
     }
@@ -1215,14 +1204,7 @@
       if (data.status === 'ok') {
         progreso.completar();
         document.getElementById('form-registro').style.display = 'none';
-
-        if (data.reservaId) {
-          setText('conf-reserva-id',  data.reservaId);
-          setText('conf-codigo-caja', data.codigoCaja || '—');
-          document.getElementById('conf-badge').style.display = 'inline-flex';
-        }
-        setText('conf-lbl-reserva', T[currentLang].confLblReserva);
-        setText('conf-lbl-caja',    T[currentLang].confLblCaja);
+        document.getElementById('aviso-legal').style.display  = 'none';
 
         const conf = document.getElementById('confirmacion');
         conf.style.display = 'block';
