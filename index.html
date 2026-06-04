@@ -52,7 +52,7 @@
     header {
       background: var(--grafito);
       color: var(--fondo);
-      padding: 3.4rem 2rem 3.6rem;
+      padding: 3.4rem 2rem 2.8rem;
       text-align: center;
       position: relative;
     }
@@ -86,6 +86,7 @@
     }
     header h1 {
       font-family: var(--f-marca);
+      font-style: normal;
       font-weight: 400;
       font-size: clamp(2.8rem, 7.5vw, 4.6rem);
       line-height: .95;
@@ -115,6 +116,8 @@
       border-left: 3px solid var(--acento-osc);
       padding: 1rem 1.25rem 1rem 1.5rem;
       font-size: .82rem;
+      font-weight: 100;
+      font-variation-settings: "wght" 100;
       line-height: 1.75;
       color: var(--texto);
       margin-bottom: 3.5rem;
@@ -413,7 +416,6 @@
     </div>
     <div class="marca">Ático Marbella Centro</div>
     <h1 id="hdr-titulo"></h1>
-    <p class="direccion">Calle Jacinto Benavente 8 · Marbella</p>
   </header>
 
   <main>
@@ -592,7 +594,7 @@
       btnEliminar:  'Eliminar',
       lblNombre:    'Nombre *', lblApellido1: 'Primer apellido *', lblApellido2: 'Segundo apellido',
       lblFnac:      'Fecha de nacimiento *', lblSexo: 'Sexo *',
-      sexoPlaceholder: '— Selecciona —', sexoM: 'Hombre', sexoF: 'Mujer', sexoX: 'No especificado',
+      sexoPlaceholder: '— Selecciona —', sexoM: 'Hombre', sexoF: 'Mujer',
       lblNacionalidad: 'Nacionalidad *',
       lblTipodoc:   'Tipo de documento *', tipodocPlaceholder: '— Selecciona —',
       tipodocPasaporte: 'Pasaporte', tipodocTarjeta: 'Tarjeta de Residencia', tipodocOtro: 'Otro',
@@ -644,7 +646,7 @@
       btnEliminar:  'Remove',
       lblNombre:    'First name *', lblApellido1: 'First surname *', lblApellido2: 'Second surname',
       lblFnac:      'Date of birth *', lblSexo: 'Sex *',
-      sexoPlaceholder: '— Select —', sexoM: 'Male', sexoF: 'Female', sexoX: 'Not specified',
+      sexoPlaceholder: '— Select —', sexoM: 'Male', sexoF: 'Female',
       lblNacionalidad: 'Nationality *',
       lblTipodoc:   'Document type *', tipodocPlaceholder: '— Select —',
       tipodocPasaporte: 'Passport', tipodocTarjeta: 'Residence Card', tipodocOtro: 'Other',
@@ -732,7 +734,6 @@
             <option value="" id="sexo-ph-${idx}"></option>
             <option value="M" id="sexo-m-${idx}"></option>
             <option value="F" id="sexo-f-${idx}"></option>
-            <option value="X" id="sexo-x-${idx}"></option>
           </select>
           <span class="mensaje-error" id="err-sexo-${idx}"></span>
         </div>
@@ -878,7 +879,6 @@
     setText('sexo-ph-' + idx, t.sexoPlaceholder);
     setText('sexo-m-'  + idx, t.sexoM);
     setText('sexo-f-'  + idx, t.sexoF);
-    setText('sexo-x-'  + idx, t.sexoX);
 
     setText('lbl-tipodoc-'  + idx, t.lblTipodoc);
     setText('lbl-numdoc-'   + idx, t.lblNumdoc);
