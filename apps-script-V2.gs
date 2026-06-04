@@ -927,8 +927,11 @@ function enviarEmailHuesped(reservaId, codigoCaja, reserva, huespedes) {
           <tr>
             <td align="center" style="padding:24px 48px;">
               <p style="margin:0;font-family:'mozaic-geo-variable',Arial,sans-serif;font-weight:200;font-size:11px;color:#f5f3ee;line-height:1.8;letter-spacing:0.04em;">
-                Ático Marbella Centro · Calle Jacinto Benavente, 8 · Marbella, Málaga<br>
-                Este correo ha sido enviado automáticamente. Por favor, no respondas directamente a este mensaje.
+                Ático Marbella Centro · Calle Jacinto Benavente, 8 · Marbella, Málaga
+              </p>
+              <p style="margin:4px 0 0 0;font-family:'mozaic-geo-variable',Arial,sans-serif;font-weight:200;font-size:11px;color:#f5f3ee;line-height:1.8;letter-spacing:0.04em;">
+                Este correo ha sido enviado automáticamente.<br>
+                Por favor, no respondas directamente a este mensaje.
               </p>
             </td>
           </tr>
@@ -1298,8 +1301,11 @@ function enviarEmailHuesped(reservaId, codigoCaja, reserva, huespedes) {
           <tr>
             <td align="center" style="padding:24px 48px;">
               <p style="margin:0;font-family:'mozaic-geo-variable',Arial,sans-serif;font-weight:200;font-size:11px;color:#f5f3ee;line-height:1.8;letter-spacing:0.04em;">
-                Ático Marbella Centro · Calle Jacinto Benavente, 8 · Marbella, Málaga<br>
-                This email was sent automatically. Please do not reply directly to this message.
+                Ático Marbella Centro · Calle Jacinto Benavente, 8 · Marbella, Málaga
+              </p>
+              <p style="margin:4px 0 0 0;font-family:'mozaic-geo-variable',Arial,sans-serif;font-weight:200;font-size:11px;color:#f5f3ee;line-height:1.8;letter-spacing:0.04em;">
+                This email was sent automatically.<br>
+                Please do not reply directly to this message.
               </p>
             </td>
           </tr>
