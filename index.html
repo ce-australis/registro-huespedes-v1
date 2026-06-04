@@ -600,8 +600,9 @@
       lblTipodoc:   'Tipo de documento *', tipodocPlaceholder: '— Selecciona —',
       tipodocPasaporte: 'Pasaporte', tipodocTarjeta: 'Tarjeta de Residencia', tipodocOtro: 'Otro',
       lblNumdoc:    'Número de documento *', lblFexpedicion: 'Fecha de expedición *',
-      lblSoporte:   'Número de soporte (DNI)',
+      lblSoporte:   'Número de soporte *',
       notaSoporte:  'Número en el reverso del DNI (ej. AAA000000).',
+      errDNI:       'El DNI debe tener 8 números y 1 letra (ej. 12345678Z).',
       fotosTitulo:  'Fotografías del documento (opcional)',
       fotosOpcional:'Adjunte una foto del anverso y, si puede, del reverso. Solo se aceptan imágenes JPG o PNG (máx. 4 MB). Si prefiere no adjuntarlas, puede enviárnoslas por WhatsApp al +34 611 164 242.',
       fotoFrontalTitulo: 'Cara frontal', fotoFrontalSub: 'Anverso · JPG / PNG', fotoFrontalBtn: 'Elegir imagen',
@@ -652,8 +653,9 @@
       lblTipodoc:   'Document type *', tipodocPlaceholder: '— Select —',
       tipodocPasaporte: 'Passport', tipodocTarjeta: 'Residence Card', tipodocOtro: 'Other',
       lblNumdoc:    'Document number *', lblFexpedicion: 'Issue date *',
-      lblSoporte:   'Support number (DNI)',
+      lblSoporte:   'Support number *',
       notaSoporte:  'Number on the back of the Spanish ID card (e.g. AAA000000).',
+      errDNI:       'DNI must be 8 digits followed by 1 letter (e.g. 12345678Z).',
       fotosTitulo:  'Document photographs (optional)',
       fotosOpcional:'Please attach a photo of the front and, if possible, the back. Only JPG or PNG (max. 4 MB). If you prefer not to attach them, send them via WhatsApp to +34 611 164 242.',
       fotoFrontalTitulo: 'Front side', fotoFrontalSub: 'Obverse · JPG / PNG', fotoFrontalBtn: 'Choose image',
@@ -769,6 +771,7 @@
         <div class="campo">
           <label for="soporte-${idx}" id="lbl-soporte-${idx}"></label>
           <input type="text" id="soporte-${idx}">
+          <span class="mensaje-error" id="err-soporte-${idx}"></span>
           <p class="nota" id="nota-soporte-${idx}"></p>
         </div>
       </div>
@@ -849,8 +852,14 @@
     const tipodocEl = document.getElementById('tipodoc-' + idx);
     if (tipodocEl) {
       tipodocEl.addEventListener('change', function() {
-        const soporte = document.getElementById('campo-soporte-' + idx);
-        if (soporte) soporte.style.display = this.value === 'DNI' ? '' : 'none';
+        const soporte      = document.getElementById('campo-soporte-' + idx);
+        const soporteInput = document.getElementById('soporte-' + idx);
+        const isDNI = this.value === 'DNI';
+        if (soporte) soporte.style.display = isDNI ? '' : 'none';
+        if (soporteInput) {
+          if (isDNI) soporteInput.setAttribute('required', '');
+          else { soporteInput.removeAttribute('required'); soporteInput.value = ''; }
+        }
       });
     }
     setupFoto('foto-frontal-' + idx, 'caja-frontal-' + idx, 'preview-frontal-' + idx, 'nombre-frontal-' + idx);
@@ -1047,6 +1056,16 @@
       req('nac-'           + idx, 'err-nac-'       + idx);
       reqSelect('tipodoc-' + idx, 'err-tipodoc-'   + idx);
       req('numdoc-'        + idx, 'err-numdoc-'    + idx);
+      // Validación formato DNI + soporte obligatorio
+      const tipodocVal = document.getElementById('tipodoc-' + idx)?.value;
+      if (tipodocVal === 'DNI') {
+        const numdocEl = document.getElementById('numdoc-' + idx);
+        if (numdocEl && numdocEl.value.trim() && !/^\d{8}[A-Za-z]$/.test(numdocEl.value.trim())) {
+          markError(numdocEl, 'err-numdoc-' + idx, t.errDNI);
+          valid = false;
+        }
+        req('soporte-' + idx, 'err-soporte-' + idx);
+      }
       reqDate('fexp-'      + idx, 'err-fexp-'      + idx);
     });
 
@@ -1230,6 +1249,17 @@
 
   /* ── INIT ── */
   document.getElementById('btn-anadir').addEventListener('click', añadirHuesped);
+
+  // Chip de fecha clicable en cualquier punto (móvil)
+  document.addEventListener('click', function(e) {
+    const campo = e.target.closest('.campo');
+    if (!campo) return;
+    const dateInput = campo.querySelector('input[type="date"]');
+    if (dateInput && e.target !== dateInput) {
+      try { dateInput.showPicker(); } catch { dateInput.focus(); }
+    }
+  });
+
   currentLang = getLang();
   añadirHuesped();
   applyLang();
