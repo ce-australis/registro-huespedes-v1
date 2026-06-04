@@ -846,7 +846,7 @@ function enviarEmailHuesped(reservaId, codigoCaja, reserva, huespedes) {
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
                 <tr>
                   <td style="text-align:right;">
-                    <a href="https://photos.app.goo.gl/qVKA167wC4M83BTt5"
+                    <a href="https://photos.app.goo.gl/NxWiwZZJmfcNphbQA"
                        style="display:inline-block;background-color:#e2dae1;border-radius:4px;padding:11px 18px;font-family:'mozaic-geo-variable',Arial,sans-serif;font-weight:200;font-size:10px;color:#867281;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;">
                       Instrucciones extra
                     </a>
@@ -1217,7 +1217,7 @@ function enviarEmailHuesped(reservaId, codigoCaja, reserva, huespedes) {
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
                 <tr>
                   <td style="text-align:right;">
-                    <a href="https://photos.app.goo.gl/qVKA167wC4M83BTt5"
+                    <a href="https://photos.app.goo.gl/NxWiwZZJmfcNphbQA"
                        style="display:inline-block;background-color:#e2dae1;border-radius:4px;padding:11px 18px;font-family:'mozaic-geo-variable',Arial,sans-serif;font-weight:200;font-size:10px;color:#867281;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;">
                       Extra instructions
                     </a>
