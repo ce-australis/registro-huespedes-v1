@@ -589,7 +589,7 @@ function enviarEmailHuesped(reservaId, codigoCaja, reserva, huespedes) {
               <p style="margin:0 0 8px 0;font-family:'rosalind',Georgia,serif;font-weight:400;font-size:28px;color:#e2dae1;letter-spacing:0.02em;line-height:1.2;">
                 Ático Marbella Centro
               </p>
-              <p style="margin:0;font-family:'inge-variable',Georgia,serif;font-style:normal;font-weight:400;font-size:52px;color:#f5f3ee;line-height:1.05;letter-spacing:-0.01em;">
+              <p style="margin:0;font-family:'inge-variable',Georgia,serif;font-style:normal;font-weight:400;font-variation-settings:'ital' 0;font-size:52px;color:#f5f3ee;line-height:1.05;letter-spacing:-0.01em;">
                 instrucciones de llegada
               </p>
             </td>
@@ -963,7 +963,7 @@ function enviarEmailHuesped(reservaId, codigoCaja, reserva, huespedes) {
               <p style="margin:0 0 8px 0;font-family:'rosalind',Georgia,serif;font-weight:400;font-size:28px;color:#e2dae1;letter-spacing:0.02em;line-height:1.2;">
                 Ático Marbella Centro
               </p>
-              <p style="margin:0;font-family:'inge-variable',Georgia,serif;font-style:normal;font-weight:400;font-size:52px;color:#f5f3ee;line-height:1.05;letter-spacing:-0.01em;">
+              <p style="margin:0;font-family:'inge-variable',Georgia,serif;font-style:normal;font-weight:400;font-variation-settings:'ital' 0;font-size:52px;color:#f5f3ee;line-height:1.05;letter-spacing:-0.01em;">
                 arrival instructions
               </p>
             </td>
