@@ -580,9 +580,9 @@ function enviarEmailHuesped(reservaId, codigoCaja, reserva, huespedes) {
 <body style="margin:0;padding:0;background-color:#f5f3ee;">
 
   <!-- ─── HEADER ────────────────────────────────────────── -->
-  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#1c1c1a;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
     <tr>
-      <td align="center">
+      <td align="center" bgcolor="#1c1c1a" style="background-color:#1c1c1a;">
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;width:100%;">
           <tr>
             <td align="center" style="padding:44px 48px 40px;">
@@ -920,9 +920,9 @@ function enviarEmailHuesped(reservaId, codigoCaja, reserva, huespedes) {
   </table>
 
   <!-- ─── FOOTER ─────────────────────────────────────────── -->
-  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#1c1c1a;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
     <tr>
-      <td align="center">
+      <td align="center" bgcolor="#1c1c1a" style="background-color:#1c1c1a;">
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;width:100%;">
           <tr>
             <td align="center" style="padding:24px 48px;">
@@ -954,9 +954,9 @@ function enviarEmailHuesped(reservaId, codigoCaja, reserva, huespedes) {
 <body style="margin:0;padding:0;background-color:#f5f3ee;">
 
   <!-- ─── HEADER ────────────────────────────────────────── -->
-  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#1c1c1a;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
     <tr>
-      <td align="center">
+      <td align="center" bgcolor="#1c1c1a" style="background-color:#1c1c1a;">
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;width:100%;">
           <tr>
             <td align="center" style="padding:44px 48px 40px;">
@@ -1294,9 +1294,9 @@ function enviarEmailHuesped(reservaId, codigoCaja, reserva, huespedes) {
   </table>
 
   <!-- ─── FOOTER ─────────────────────────────────────────── -->
-  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#1c1c1a;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
     <tr>
-      <td align="center">
+      <td align="center" bgcolor="#1c1c1a" style="background-color:#1c1c1a;">
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;width:100%;">
           <tr>
             <td align="center" style="padding:24px 48px;">
